@@ -11,7 +11,6 @@ namespace _Scripts.Managers
         private int _currentColor = 0;
         
         [Header("Drag Objects")]
-        [SerializeField] private Transform _mapParent;
         private bool _isDragging = false;
         private Vector3 _cardOffset;
         private BaseCard _draggingCard;
@@ -56,9 +55,14 @@ namespace _Scripts.Managers
             foreach (var hit in hits)
             {
                 var result = hit.transform.gameObject.GetComponent<TResult>();
-                if ( result != null) return result;
+                if (result != null)
+                {
+                    Debug.Log("Mouse find "+ gameObject.name);
+                    return result;
+                }
             }
 
+            Debug.Log("Mouse cannot find "+ typeof(TResult));
             return default;
         }
 
@@ -74,7 +78,11 @@ namespace _Scripts.Managers
             _isDragging = true;
 
             if (_lastCardPlaceHolder == null) return;
-            _lastCardPlaceRegion.TakeOutTemporary(_lastCardPlaceHolder);
+            if (!_lastCardPlaceRegion.TakeOutTemporary(_draggingCard, _lastCardPlaceHolder))
+            {
+                _lastCardPlaceHolder = null;
+                _lastCardPlaceRegion = null;
+            }
 
         }
 
@@ -101,17 +109,25 @@ namespace _Scripts.Managers
             }
             else
             {
-                placeRegion.AddCard(_draggingCard, placeHolder);
-
+                if (!placeRegion.AddCard(_draggingCard, placeHolder))
+                {
+                    if(_lastCardPlaceRegion != null) _lastCardPlaceRegion.ReAddTemporary(_draggingCard);
+                }
+                else
+                {
+                    
+                }
                 if (_lastCardPlaceHolder != null)
                 {
                     _lastCardPlaceRegion.RemoveTemporary(_draggingCard);
                 }
+
             }
             
             _draggingCard = null;
             _lastCardPlaceHolder = null;
             _lastCardPlaceRegion = null;
+            _isDragging = false;
 
         }
         

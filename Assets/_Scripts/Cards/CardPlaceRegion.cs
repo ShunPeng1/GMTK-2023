@@ -6,62 +6,81 @@ namespace _Scripts.Cards
 {
     public class CardPlaceRegion : MonoBehaviour
     {
-        private Vector3 _cardOffset = new Vector3(0.5f, 0 ,0);
+        [SerializeField] private Transform _spawnPlace;
+        [SerializeField] private int _maxCardHold = new();
+        [SerializeField] private Vector3 _cardOffset = new Vector3(5f, 0 ,0);
+        
         
         private readonly List<CardPlaceHolder> _cardPlaceHolders = new();
-        [SerializeField] private int _maxCardHold = new();
         private CardPlaceHolder _temporaryCardHolder;
+        [SerializeField] private int _cardCount = 0;
 
         private void Start()
         {
             for (int i = 0; i < _maxCardHold; i++)
             {
-                _cardPlaceHolders[i] = Instantiate(ResourceManager.Instance.CardPlaceHolder, transform.position + i * _cardOffset, Quaternion.identity, transform);
+                _cardPlaceHolders.Add( Instantiate(ResourceManager.Instance.CardPlaceHolder, _spawnPlace.position + i * _cardOffset, Quaternion.identity, _spawnPlace));
+                
             }
         }
 
         public bool AddCard(BaseCard card, CardPlaceHolder cardPlaceHolder)
         {
-            int index = _cardPlaceHolders.IndexOf(cardPlaceHolder);
-            if (index >= _maxCardHold)
+            if (_cardCount >= _maxCardHold)
             {
                 return false;
             }
+            
+            int index = _cardPlaceHolders.IndexOf(cardPlaceHolder);
 
-            if (index >= _cardPlaceHolders.Count)
+            if (index >= _cardCount)
             {
+                index = _cardCount ;
+                
                 _cardPlaceHolders[index].BaseCard = card;
+                card.transform.position = _cardPlaceHolders[index].transform.position;
+
+                _cardCount ++;
                 return true;
             }
             
             ShiftRight(index);
             
             _cardPlaceHolders[index].BaseCard = card;
+            card.transform.position = _cardPlaceHolders[index].transform.position;
+
+            _cardCount++;
             return true;
         }
 
         private void ShiftRight(int startIndex)
         {
-            for (int i = _cardPlaceHolders.Count; i >= startIndex; i--)
+            for (int i = _cardPlaceHolders.Count - 1; i > startIndex; i--)
             {
-                var card = _cardPlaceHolders[i].BaseCard;
-                _cardPlaceHolders[i+1].BaseCard = card;
-                card.transform.position = _cardPlaceHolders[i + 1].transform.position;
+                var card = _cardPlaceHolders[i-1].BaseCard;
+                _cardPlaceHolders[i].BaseCard = card;
+                
+                if (card == null) continue;
+                card.transform.position = _cardPlaceHolders[i].transform.position;
             }
         }
         
         
         private void ShiftLeft(int startIndex)
         {
-            for (int i = startIndex; i < _cardPlaceHolders.Count; i++)
+            for (int i = startIndex; i < _cardPlaceHolders.Count - 1; i++)
             {
                 var card = _cardPlaceHolders[i+1].BaseCard;
                 _cardPlaceHolders[i].BaseCard = card;
+                
+                if (card == null) continue;
                 card.transform.position = _cardPlaceHolders[i].transform.position;
             }
+
+            _cardPlaceHolders[^1].BaseCard = null;
         }
         
-        public void RemoveCard(BaseCard card)
+        public bool RemoveCard(BaseCard card)
         {
             for (int i = 0; i < _cardPlaceHolders.Count; i++)
             {
@@ -69,9 +88,24 @@ namespace _Scripts.Cards
                 {
                     _cardPlaceHolders[i].BaseCard = null;
                     ShiftLeft(i);
-                    break;
+                    
+                    _cardCount--;
+
+                    return true;
                 }
             }
+            return false;
+        }
+        
+        public bool RemoveCard(BaseCard card,CardPlaceHolder cardPlaceHolder)
+        {
+            if (cardPlaceHolder.BaseCard != card) return false;
+            
+            cardPlaceHolder.BaseCard = null;
+            ShiftLeft(_cardPlaceHolders.IndexOf(cardPlaceHolder));
+            _cardCount--;
+
+            return true;
         }
         
         /*
@@ -95,22 +129,22 @@ namespace _Scripts.Cards
             }
         }*/
 
-        public int TakeOutTemporary(CardPlaceHolder cardPlaceHolder)
+        public bool TakeOutTemporary(BaseCard card,CardPlaceHolder cardPlaceHolder)
         {
             _temporaryCardHolder = cardPlaceHolder;
-            return _cardPlaceHolders.IndexOf(cardPlaceHolder);
+            return RemoveCard(card,cardPlaceHolder);;
         }
         
         public void ReAddTemporary(BaseCard baseCard)
         {
+            AddCard(baseCard, _temporaryCardHolder);
+            
             _temporaryCardHolder = null;
-            baseCard.transform.position = transform.position + _cardOffset;
         }
 
         public void RemoveTemporary(BaseCard baseCard)
         {
-            RemoveCard(baseCard);
-            
+            _temporaryCardHolder = null;
         }
     }
 }
