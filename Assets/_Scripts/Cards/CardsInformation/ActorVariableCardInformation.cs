@@ -39,28 +39,17 @@ namespace _Scripts.Cards.CardsInformation
             {
                 return new object[] { Increase((ActorBehavior)parameters1[0]) };
             }
-            else if (dataType1 == typeof(PlayerActor []))
+            else if (dataType1 == typeof(ActorBehavior []))
             {
-                var actorBehaviors = (PlayerActor[])parameters1[0];
-                object[] result = new object[actorBehaviors.Length];
-                for (int i = 0; i < actorBehaviors.Length; i++)
-                {
-                    result[i] = Increase(actorBehaviors[i]);
-                }
-
-                return result;
-            }
-            if (dataType1 == typeof(EnemyActor []))
-            {
-                var actorBehaviors = (EnemyActor[])parameters1[0];
+                var actorBehaviors = (ActorBehavior[])parameters1[0];
                 ObservableData<float> [] result = new ObservableData<float>[actorBehaviors.Length];
                 for (int i = 0; i < actorBehaviors.Length; i++)
                 {
                     result[i] = Increase(actorBehaviors[i]);
                 }
-
                 return new object[] { result };
             }
+            
             return new object[] { };
         }
 

@@ -26,14 +26,9 @@ namespace _Scripts.Cards.CardsInformation
             
             Type dataType1 = parameters1[0].GetType(); // Get the type of the object
 
-            if (dataType1 == typeof(PlayerActor))
+            if (dataType1 == typeof(ActorBehavior))
             {
-                return new object[] { CardExecutionManager.Instance.PlayerActors };
-            }
-            
-            if (dataType1 == typeof(EnemyActor))
-            {
-                return new object[] { CardExecutionManager.Instance.EnemyActors };
+                return new object[] { CardExecutionManager.Instance.GetAllActorOfRole(((ActorBehavior) parameters1[0]).Role.Value) };
             }
             
             return new object[] { };

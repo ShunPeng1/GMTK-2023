@@ -9,8 +9,7 @@ namespace _Scripts.Cards
 {
     public class CardExecutionManager : SingletonMonoBehaviour<CardExecutionManager>
     {
-        [SerializeField] public PlayerActor [] PlayerActors;
-        [SerializeField] public EnemyActor [] EnemyActors;
+        [SerializeField] public ActorBehavior [] Actors;
         
         [SerializeField] private CardPlaceRegion _executeRegion;
         
@@ -42,6 +41,22 @@ namespace _Scripts.Cards
         {
             
         }
+        
+        public ActorBehavior[] GetAllActorOfRole(ActorRole actorRole)
+        {
+            return Actors.Where(actor => actor.Role.Value == actorRole).ToArray();
+        }
+        
+        public ActorBehavior GetFirstActorOfRole(ActorRole actorRole)
+        {
+            return Actors.FirstOrDefault(actor => actor.Role.Value == actorRole);
+        }
+        
+        public ActorBehavior GetLastActorOfRole(ActorRole actorRole)
+        {
+            return Actors.LastOrDefault(actor => actor.Role.Value == actorRole);
+        }
+
 
         public void Execute()
         {
@@ -143,6 +158,7 @@ namespace _Scripts.Cards
             object[] parameter = { noun1, noun2 };
             return verbCard.Execute(parameter);
         }
+        
         
     }
     

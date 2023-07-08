@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66ebe76d187a46019669e47451638f55, type: 3}
-  m_Name: Enemy Actor
+  m_Name: Get Ally Actor
   m_EditorClassIdentifier: 
   WordCardType: 0
   Priority: 0
-  Name: Enemy
+  Name: Ally
   Cost: 1
   ParametersCount: 0
   ResultCount: 1
+  _actorRole: 0
