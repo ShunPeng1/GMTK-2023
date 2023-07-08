@@ -2,7 +2,7 @@
 
 namespace _Scripts.Cards.CardsInformation
 {
-    [CreateAssetMenu(fileName = "Card Information", menuName = "Card Information/Enemy Actor" )]
+    [CreateAssetMenu(fileName = "Card Information", menuName = "Card Information/Float Value" )]
     public class FloatValueCardInformation : BaseCardInformation
     {
         [SerializeField] private float _value;

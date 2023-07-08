@@ -2,7 +2,7 @@
 
 namespace _Scripts.Cards.CardsInformation
 {
-    [CreateAssetMenu(fileName = "Card Information", menuName = "Card Information/Player Actor" )]
+    [CreateAssetMenu(fileName = "Card Information", menuName = "Card Information/Reduce Verb" )]
     public class ReduceCardInformation : BaseCardInformation
     {
     

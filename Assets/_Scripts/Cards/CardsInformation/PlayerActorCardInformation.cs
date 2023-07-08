@@ -8,9 +8,9 @@ namespace _Scripts.Cards.CardsInformation
     {
         public override void Awake()
         {
-             WordCardType = WordCardType.Noun;
+             WordCardType = WordCardType.VerbUnary;
              Priority = 0;
-             Name = "Player";
+             Name = " Damage ";
              Cost = 1;
              ParametersCount = 0;
              ResultCount = 1;

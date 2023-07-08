@@ -43,7 +43,7 @@ namespace _Scripts.Cards
             
         }
 
-        public object Execute()
+        public void Execute()
         {
             var cardsInformation = _executeRegion.GetCardsInformation();
 
@@ -107,7 +107,7 @@ namespace _Scripts.Cards
             }
 
             // The result will be the top value in the operand stack
-            return prefixVariables.Pop();
+            //return prefixVariables.Pop();
         
         }
 

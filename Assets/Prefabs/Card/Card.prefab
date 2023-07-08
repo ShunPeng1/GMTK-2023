@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1410be83bb64c42a0d2148fd0d4c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardInformation: {fileID: 11400000, guid: 1eebc7ddd0deee642b2d3d2c97794265, type: 2}
+  _wordText: {fileID: 1451826639258645367}
 --- !u!114 &9136204727120022475
 MonoBehaviour:
   m_ObjectHideFlags: 0
