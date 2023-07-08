@@ -1,4 +1,5 @@
 ﻿using System;
+using _Scripts.Actor;
 using _Scripts.DataWrapper;
 using UnityEngine;
 
@@ -22,29 +23,46 @@ namespace _Scripts.Cards.CardsInformation
             var parameters1 = (object[])array[0]; // Left
             var parameters2 = (object[])array[1]; // Right
 
-            /*
-            ObservableData<float> assigner = (ObservableData<float>) parameters1[0]; 
-            ObservableData<float> value = (ObservableData<float>) parameters2[0];
-            assigner.Value = value.Value;
-            */
-            
             Type dataType1 = parameters1[0].GetType(); // Get the type of the object
             Type dataType2 = parameters2[0].GetType(); // Get the type of the object
 
-            if (dataType1 == typeof(ObservableData<float> []))
+
+            if (dataType1 == typeof(ActorBehavior) && dataType2 == typeof(ActorBehavior))
             {
-                foreach (var observableData in (ObservableData<float> [])  parameters1[0])
+                var actorBehavior1 = (ActorBehavior)parameters1[0];
+                var actorBehavior2 = (ActorBehavior)parameters2[0];
+                actorBehavior1.Attack(actorBehavior2);
+            }
+            else if (dataType1 == typeof(ActorBehavior []) && dataType2 == typeof(ActorBehavior))
+            {
+                var actorBehaviors1 = (ActorBehavior[])parameters1[0];
+                var actorBehavior2 = (ActorBehavior)parameters2[0];
+                foreach (var actor in actorBehaviors1)
                 {
-                    observableData.Value -= ((ObservableData<float>)parameters2[0]).Value;
+                    actor.Attack(actorBehavior2);
                 }
             }
-            else if (dataType1 == typeof(ObservableData<float>))
+            else if (dataType1 == typeof(ActorBehavior) && dataType2 == typeof(ActorBehavior []))
             {
-                ((ObservableData<float>)parameters1[0]).Value += ((ObservableData<float>)parameters2[0]).Value;
+                var actorBehavior1 = (ActorBehavior)parameters1[0];
+                var actorBehaviors2 = (ActorBehavior [])parameters2[0];
+                foreach (var actor in actorBehaviors2)
+                {
+                    actorBehavior1.Attack(actor);
+                }
             }
-            else if (dataType1 == typeof(ObservableData<int>))
+            else if (dataType1 == typeof(ActorBehavior []) && dataType2 == typeof(ActorBehavior []))
             {
-                ((ObservableData<int>)parameters1[0]).Value += ((ObservableData<int>)parameters2[0]).Value;
+                var actorBehaviors1 = (ActorBehavior[])parameters1[0];
+                var actorBehaviors2 = (ActorBehavior[])parameters2[0];
+                foreach (var actor1 in actorBehaviors1)
+                {
+                    foreach (var actor2 in actorBehaviors2)
+                    {
+                        actor1.Attack(actor2);
+                        actor2.Attack(actor1);
+                    }
+                }
             }
             
             return new object[] { };

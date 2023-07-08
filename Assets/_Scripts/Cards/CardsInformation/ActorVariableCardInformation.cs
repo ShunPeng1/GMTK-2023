@@ -37,7 +37,7 @@ namespace _Scripts.Cards.CardsInformation
 
             if (dataType1 == typeof(ActorBehavior))
             {
-                return new object[] { Increase((ActorBehavior)parameters1[0]) };
+                return new object[] { GetFloat((ActorBehavior)parameters1[0]) };
             }
             else if (dataType1 == typeof(ActorBehavior []))
             {
@@ -45,7 +45,7 @@ namespace _Scripts.Cards.CardsInformation
                 ObservableData<float> [] result = new ObservableData<float>[actorBehaviors.Length];
                 for (int i = 0; i < actorBehaviors.Length; i++)
                 {
-                    result[i] = Increase(actorBehaviors[i]);
+                    result[i] = GetFloat(actorBehaviors[i]);
                 }
                 return new object[] { result };
             }
@@ -53,7 +53,7 @@ namespace _Scripts.Cards.CardsInformation
             return new object[] { };
         }
 
-        private ObservableData<float> Increase(ActorBehavior actorBehavior)
+        private ObservableData<float> GetFloat(ActorBehavior actorBehavior)
         {
             return _actorVariable switch
             {
