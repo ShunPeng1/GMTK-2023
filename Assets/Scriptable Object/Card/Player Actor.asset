@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WordCardType: 0
   Priority: 0
-  Name: Player
+  Name: 'Player '
   Cost: 1
   ParametersCount: 0
   ResultCount: 1
