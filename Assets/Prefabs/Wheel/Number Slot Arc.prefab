@@ -25,17 +25,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2900081262905810317}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.67559016, w: 0.7372774}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9063738587786062677}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -85}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.034, y: -0.034}
+  m_AnchoredPosition: {x: 4.998, y: 0.336}
   m_SizeDelta: {x: 7.4757, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5343331139643426720
@@ -109,8 +109,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blendMode: 1
   scaleMode: 0
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0, g: 0, b: 0, a: 1}
   detailLevel: 2
   renderQueue: -1
   zTest: 4
@@ -241,11 +241,11 @@ MonoBehaviour:
   colorOuterEnd: {r: 1, g: 1, b: 1, a: 1}
   geometry: 0
   angUnitInput: 1
-  angRadiansStart: 1.3089969
-  angRadiansEnd: 1.8325957
+  angRadiansStart: 0
+  angRadiansEnd: 0.17453292
   radius: 5
   radiusSpace: 0
-  thickness: 2
+  thickness: 1.5
   thicknessSpace: 0
   arcEndCaps: 0
   matchDashSpacingToSize: 1
@@ -320,3 +320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d02fbbfe474202a66593d94165023d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _numberSlot: {fileID: 0}
+  _disc: {fileID: 9063738587786062696}
+  _text: {fileID: 6826755656995807715}

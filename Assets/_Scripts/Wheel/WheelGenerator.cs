@@ -12,41 +12,38 @@ public class WheelGenerator : MonoBehaviour
     [SerializeField] private float _numberSlotRange = 10f;
     [SerializeField] private float _numberSlotThickness = 3f;
     [SerializeField] private float _numberSlotTextSize = 36f;
-    void Start()
+    void Awake()
     {
-        
-        
+        GenerateWheel();
+
     }
+    
 
     private void GenerateWheel()
     {
         float currentDegree = 0;
-        float arcDegree = CalculateArcAngle(_numberSlots.Count, _arcSpacing); 
+        float arcDegree = CalculateArcAngleInDegree(_numberSlots.Count, _arcSpacing); 
         foreach (var numberSlot in _numberSlots)
         {
             var disc = Instantiate(ResourceManager.Instance.WheelNumberSlot, transform);
             WheelArc wheelArc = new WheelArc(
                 currentDegree,
-                currentDegree + arcDegree,
+                 arcDegree,
                 _numberSlotRange,
                 _numberSlotThickness,
                 _numberSlotTextSize);
             disc.Init(numberSlot, wheelArc);
             
-            currentDegree += arcDegree;
+            currentDegree += arcDegree + _arcSpacing;
 
         }
         
     }
     
-    float CalculateArcAngle(int numArcs, float spacing)
+    float CalculateArcAngleInDegree(int numArcs, float spacing)
     {
-        // Calculate the total angle based on the number of arcs
-        float totalAngle = (numArcs - 1) * spacing;
-
         // Calculate the angle for each arc
-        float arcAngle = totalAngle / numArcs;
-
+        float arcAngle = (360f / numArcs) - spacing;
         return arcAngle;
     }
 }

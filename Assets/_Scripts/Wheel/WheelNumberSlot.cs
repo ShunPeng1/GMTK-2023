@@ -15,7 +15,9 @@ public class WheelNumberSlot : MonoBehaviour
         _disc.transform.rotation = Quaternion.Euler(0,0,wheelArc.ArcStartDegree);
         _disc.AngRadiansEnd = wheelArc.ArcEndDegree * Mathf.Deg2Rad;
         _disc.Radius = wheelArc.WheelRange;
-
+        _disc.Color = ColorManager.Instance.GetSlotColor(numberSlot.SlotColor);
+        _disc.Thickness = wheelArc.ArcThickness;
+        
         _text.text = numberSlot.Number.ToString();
         
     }

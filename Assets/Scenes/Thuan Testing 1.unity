@@ -285,11 +285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5745f6ad227a044e9bc511c935908c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _redSlotColor: {r: 0.91372555, g: 0.13333334, b: 0.16078432, a: 0}
-  _greenSlotColor: {r: 0, g: 0.8396226, b: 0.40231922, a: 0}
-  _blueSlotColor: {r: 0.105882354, g: 0.105882354, b: 0.105882354, a: 0}
-  _blackSlotColor: {r: 0, g: 0, b: 0, a: 0}
-  _yellowSlotColor: {r: 0, g: 0, b: 0, a: 0}
+  _redSlotColor: {r: 0.91372555, g: 0.13333334, b: 0.16078432, a: 1}
+  _greenSlotColor: {r: 0, g: 0.8396226, b: 0.40231922, a: 1}
+  _blueSlotColor: {r: 0.120016046, g: 0.52032936, b: 0.8773585, a: 1}
+  _blackSlotColor: {r: 0.105882354, g: 0.105882354, b: 0.105882354, a: 1}
+  _yellowSlotColor: {r: 0.8773585, g: 0.7763955, b: 0.120016046, a: 0}
 --- !u!1 &890304596
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,6 +299,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 890304597}
+  - component: {fileID: 890304598}
   m_Layer: 0
   m_Name: Resource Manager
   m_TagString: Untagged
@@ -321,6 +322,19 @@ Transform:
   m_Father: {fileID: 1015946258}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &890304598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890304596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8061eb0e7e2e05e4fbbda6c3eeed4990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WheelNumberSlot: {fileID: 2809564872936878693, guid: e776225b542f0724682131c425d9f9db, type: 3}
 --- !u!1 &1015946257
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +436,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2a0857e3c685fe44b9bf4be0ea0710e3, type: 2}
   - {fileID: 11400000, guid: 1e9c57d3482f8f74eae08134ee693894, type: 2}
   - {fileID: 11400000, guid: 7c152399415105343954ee67624cd5e0, type: 2}
-  _arcSpacing: 0.1
+  _arcSpacing: 2
   _numberSlotRange: 10
   _numberSlotThickness: 3
   _numberSlotTextSize: 36
