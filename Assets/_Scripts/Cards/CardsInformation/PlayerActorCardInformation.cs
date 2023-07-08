@@ -8,9 +8,9 @@ namespace _Scripts.Cards.CardsInformation
     {
         public override void Awake()
         {
-             WordCardType = WordCardType.VerbUnary;
+             WordCardType = WordCardType.Noun;
              Priority = 0;
-             Name = " Damage ";
+             Name = " Player ";
              Cost = 1;
              ParametersCount = 0;
              ResultCount = 1;
@@ -18,7 +18,7 @@ namespace _Scripts.Cards.CardsInformation
 
         public override object[] Execute(object[] array)
         {
-            return new object[] { CardExecutionManager.Instance.PlayerActor };
+            return new object[] { CardExecutionManager.Instance.PlayerActors[0] };
         }
     }
 }

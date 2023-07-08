@@ -25,16 +25,19 @@ namespace _Scripts.Cards.CardsInformation
             var parameters1 = (object[])array[0]; // Left
             var parameters2 = (object[])array[1]; // Right
 
-            /*
-            ObservableData<float> assigner = (ObservableData<float>) parameters1[0]; 
-            ObservableData<float> value = (ObservableData<float>) parameters2[0];
-            assigner.Value = value.Value;
-            */
+            
             
             Type dataType1 = parameters1[0].GetType(); // Get the type of the object
             Type dataType2 = parameters2[0].GetType(); // Get the type of the object
 
-            if (dataType1 == typeof(ObservableData<float>))
+            if (dataType1 == typeof(ObservableData<float> []))
+            {
+                foreach (var observableData in (ObservableData<float> [])  parameters1[0])
+                {
+                    observableData.Value -= ((ObservableData<float>)parameters2[0]).Value;
+                }
+            }
+            else if (dataType1 == typeof(ObservableData<float>))
             {
                 ((ObservableData<float>)parameters1[0]).Value = ((ObservableData<float>)parameters2[0]).Value;
             }

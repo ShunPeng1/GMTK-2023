@@ -1,5 +1,6 @@
 ﻿using System;
 using _Scripts.Actor;
+using _Scripts.DataWrapper;
 using UnityEngine;
 
 namespace _Scripts.Cards.CardsInformation
@@ -18,7 +19,7 @@ namespace _Scripts.Cards.CardsInformation
         [SerializeField] private Variable _actorVariable;
         public override void Awake()
         {
-            WordCardType = WordCardType.VerbUnary;
+            WordCardType = WordCardType.VerbPrefixUnary;
             Priority = 0;
             Name = "'s Health";
             Cost = 1;
@@ -29,23 +30,49 @@ namespace _Scripts.Cards.CardsInformation
 
         public override object[] Execute(object[] array)
         {
-            var parameter1 = (object[]) array[0];
-            ActorBehavior actorBehavior = (ActorBehavior) parameter1[0];
+            var parameters1 = (object[])array[0]; // Left
 
-            switch (_actorVariable)
+            Type dataType1 = parameters1[0].GetType(); // Get the type of the object
+            
+
+            if (dataType1 == typeof(ActorBehavior))
             {
-                case Variable.Health:
-                    return new object[] { actorBehavior.Health };
-                    break;
-                case Variable.Strength:
-                    return new object[] { actorBehavior.Strength };
-                    break;
-                case Variable.Gold:
-                    return new object[] { actorBehavior.Gold };
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                return new object[] { Increase((ActorBehavior)parameters1[0]) };
             }
+            else if (dataType1 == typeof(PlayerActor []))
+            {
+                var actorBehaviors = (PlayerActor[])parameters1[0];
+                object[] result = new object[actorBehaviors.Length];
+                for (int i = 0; i < actorBehaviors.Length; i++)
+                {
+                    result[i] = Increase(actorBehaviors[i]);
+                }
+
+                return result;
+            }
+            if (dataType1 == typeof(EnemyActor []))
+            {
+                var actorBehaviors = (EnemyActor[])parameters1[0];
+                ObservableData<float> [] result = new ObservableData<float>[actorBehaviors.Length];
+                for (int i = 0; i < actorBehaviors.Length; i++)
+                {
+                    result[i] = Increase(actorBehaviors[i]);
+                }
+
+                return new object[] { result };
+            }
+            return new object[] { };
+        }
+
+        private ObservableData<float> Increase(ActorBehavior actorBehavior)
+        {
+            return _actorVariable switch
+            {
+                Variable.Health => actorBehavior.Health,
+                Variable.Strength => actorBehavior.Strength,
+                Variable.Gold => actorBehavior.Gold,
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
     }
 }

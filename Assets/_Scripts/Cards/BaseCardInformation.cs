@@ -7,7 +7,8 @@ namespace _Scripts.Cards
     public enum WordCardType
     {
         Noun,
-        VerbUnary,
+        VerbPrefixUnary,
+        VerbPostfixUnary,
         VerbBinary,
         VerbTernary,
         Value,

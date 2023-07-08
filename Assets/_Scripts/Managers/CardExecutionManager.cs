@@ -9,7 +9,7 @@ namespace _Scripts.Cards
 {
     public class CardExecutionManager : SingletonMonoBehaviour<CardExecutionManager>
     {
-        [SerializeField] public PlayerActor PlayerActor;
+        [SerializeField] public PlayerActor [] PlayerActors;
         [SerializeField] public EnemyActor [] EnemyActors;
         
         [SerializeField] private CardPlaceRegion _executeRegion;
@@ -62,7 +62,7 @@ namespace _Scripts.Cards
                         break;
                     
                     
-                    case WordCardType.VerbUnary:
+                    case WordCardType.VerbPrefixUnary:
                         while (verbStack.Count > 0 && cardInformation.Priority < verbStack.Peek().Priority)
                         {
                             prefixVariables.Push(ExecuteVerb(verbStack.Pop(), prefixVariables.Pop()));
@@ -72,6 +72,10 @@ namespace _Scripts.Cards
                         verbStack.Push(cardInformation);
                         break;
                     
+                    case WordCardType.VerbPostfixUnary:
+                        prefixVariables.Push(ExecuteVerb(cardInformation, prefixVariables.Pop()));
+                        break;
+                        
                     case WordCardType.VerbBinary:
                         while (verbStack.Count > 0 && cardInformation.Priority < verbStack.Peek().Priority)
                         {
@@ -102,8 +106,8 @@ namespace _Scripts.Cards
                 var verb = verbStack.Pop();
                 switch (verb.WordCardType)
                 {
-                    
-                    case WordCardType.VerbUnary:
+                    case WordCardType.VerbPostfixUnary:
+                    case WordCardType.VerbPrefixUnary:
                         var resultVerbUnary = ExecuteVerb(verb, prefixVariables.Pop());
                         prefixVariables.Push(resultVerbUnary);
                         break;

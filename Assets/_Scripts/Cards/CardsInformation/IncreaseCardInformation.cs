@@ -33,7 +33,14 @@ namespace _Scripts.Cards.CardsInformation
             Type dataType1 = parameters1[0].GetType(); // Get the type of the object
             Type dataType2 = parameters2[0].GetType(); // Get the type of the object
 
-            if (dataType1 == typeof(ObservableData<float>))
+            if (dataType1 == typeof(ObservableData<float> []))
+            {
+                foreach (var observableData in (ObservableData<float> [])  parameters1[0])
+                {
+                    observableData.Value -= ((ObservableData<float>)parameters2[0]).Value;
+                }
+            }
+            else if (dataType1 == typeof(ObservableData<float>))
             {
                 ((ObservableData<float>)parameters1[0]).Value += ((ObservableData<float>)parameters2[0]).Value;
             }
