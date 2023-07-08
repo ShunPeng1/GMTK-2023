@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Object Contain Word
+    uniqueID: 2577221525
+    locked: 0
+  - name: Word On Object
+    uniqueID: 1520008449
+    locked: 0
