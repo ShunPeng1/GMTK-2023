@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class BaseCard : MonoBehaviour
 {
-    protected BaseCardInformation CardInformation;
+    public BaseCardInformation CardInformation;
     
     protected bool IsDragging = false;
     protected Vector3 Offset;

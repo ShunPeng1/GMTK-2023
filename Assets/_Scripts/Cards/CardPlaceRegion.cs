@@ -24,6 +24,17 @@ namespace _Scripts.Cards
             }
         }
 
+        public List<BaseCardInformation> GetCardsInformation()
+        {
+            List<BaseCardInformation> result = new();
+            for (int i = 0; i < _cardCount; i++)
+            {
+                result.Add(_cardPlaceHolders[i].BaseCard.CardInformation);
+            }
+
+            return result;
+        }
+
         public bool AddCard(BaseCard card, CardPlaceHolder cardPlaceHolder)
         {
             if (_cardCount >= _maxCardHold)

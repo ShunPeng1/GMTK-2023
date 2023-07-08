@@ -7,23 +7,38 @@ namespace _Scripts.Cards
     public enum WordCardType
     {
         Noun,
-        Verb,
+        VerbUnary,
+        VerbBinary,
+        VerbTernary,
         Value,
         Condition,
     }
     
-    public class BaseCardInformation
+    [CreateAssetMenu(fileName = "Card Information")]
+    public abstract class BaseCardInformation : ScriptableObject
     {
-        
-        public string Name;
         public WordCardType WordCardType;
+        public int Priority;
+        public string Name;
+        public int Cost;
+        public int ParametersCount;
+        public int ResultCount;
         
         private List<object> _objectList = new();
 
+        public abstract void Awake();
 
         public void AddObject(object obj)
         {
             _objectList.Add(obj);
+        }
+        
+        public void AddObjects(object [] array)
+        {
+            foreach (var obj in array)
+            {
+                _objectList.Add(array);
+            }
         }
 
         public T GetObjectByType<T>()
@@ -43,13 +58,9 @@ namespace _Scripts.Cards
         {
             _objectList.Remove(obj);
         }
-    
-        
-        public virtual void Execute()
-        {
-            
-        }
 
-        
+
+        public abstract object[] Execute(object[] array);
+
     }
 }
