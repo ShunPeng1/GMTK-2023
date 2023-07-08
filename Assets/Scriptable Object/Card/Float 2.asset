@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WordCardType: 0
   Priority: 0
-  Name: ' 0'
+  Name: ' 2'
   Cost: 0
   ParametersCount: 0
   ResultCount: 1
-  _value: 2
+  _value:
+    _value: 2

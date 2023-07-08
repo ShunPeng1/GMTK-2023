@@ -18,7 +18,7 @@ namespace _Scripts.Cards.CardsInformation
         [SerializeField] private Variable _actorVariable;
         public override void Awake()
         {
-            WordCardType = WordCardType.Noun;
+            WordCardType = WordCardType.VerbUnary;
             Priority = 0;
             Name = "'s Health";
             Cost = 1;
@@ -30,7 +30,7 @@ namespace _Scripts.Cards.CardsInformation
         public override object[] Execute(object[] array)
         {
             var parameter1 = (object[]) array[0];
-            ActorBehavior actorBehavior = (ActorBehavior) array[0];
+            ActorBehavior actorBehavior = (ActorBehavior) parameter1[0];
 
             switch (_actorVariable)
             {

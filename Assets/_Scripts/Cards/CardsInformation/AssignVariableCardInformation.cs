@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _Scripts.DataWrapper;
+using UnityEngine;
 
 namespace _Scripts.Cards.CardsInformation
 {
@@ -18,8 +19,16 @@ namespace _Scripts.Cards.CardsInformation
 
         public override object[] Execute(object[] array)
         {
-            var parameters1 = (object[])array[0];
-            var parameters2 = (object[])array[1];
+            var parameters1 = (object[])array[0]; // Left
+            var parameters2 = (object[])array[1]; // Right
+
+            ObservableData<float> assigner = (ObservableData<float>) parameters1[0]; 
+            ObservableData<float> value = (ObservableData<float>) parameters2[0];
+            assigner.Value = value.Value;
+            
+            
+
+            
             return new object[] { CardExecutionManager.Instance.PlayerActor };
         }
 

@@ -61,6 +61,17 @@ namespace _Scripts.Cards
                         prefixVariables.Push(cardInformation.Execute(null));
                         break;
                     
+                    
+                    case WordCardType.VerbUnary:
+                        while (verbStack.Count > 0 && cardInformation.Priority < verbStack.Peek().Priority)
+                        {
+                            prefixVariables.Push(ExecuteVerb(verbStack.Pop(), prefixVariables.Pop()));
+                        }
+                        
+                        // Push the current operator onto the operator stack
+                        verbStack.Push(cardInformation);
+                        break;
+                    
                     case WordCardType.VerbBinary:
                         while (verbStack.Count > 0 && cardInformation.Priority < verbStack.Peek().Priority)
                         {
@@ -75,7 +86,7 @@ namespace _Scripts.Cards
                         prefixVariables.Push(cardInformation.Execute(null));
                         break;
 
-                    case WordCardType.VerbUnary:
+                        
                     case WordCardType.VerbTernary:
                     case WordCardType.Condition:
                     default:
@@ -93,11 +104,15 @@ namespace _Scripts.Cards
                 {
                     
                     case WordCardType.VerbUnary:
-                        var result = ExecuteVerb(verb, prefixVariables.Pop(), prefixVariables.Pop());
-                        prefixVariables.Push(result);
+                        var resultVerbUnary = ExecuteVerb(verb, prefixVariables.Pop());
+                        prefixVariables.Push(resultVerbUnary);
                         break;
                     
                     case WordCardType.VerbBinary:
+                        var resultVerbBinary = ExecuteVerb(verb, prefixVariables.Pop(), prefixVariables.Pop());
+
+                        prefixVariables.Push(resultVerbBinary);
+                        break;
                     case WordCardType.VerbTernary:
                     case WordCardType.Condition:
                     default:
@@ -110,12 +125,18 @@ namespace _Scripts.Cards
             //return prefixVariables.Pop();
         
         }
-
-        public object[] ExecuteVerb(BaseCardInformation verbCard, object [] noun1, object [] noun2)
+        
+        
+        private object[] ExecuteVerb(BaseCardInformation verbCard, object [] noun1)
         {
-            object[] parameter = {
-                noun1, noun2
-            };
+            object[] parameter = { noun1 };
+            return verbCard.Execute(parameter);
+        }
+
+
+        private object[] ExecuteVerb(BaseCardInformation verbCard, object [] noun1, object [] noun2)
+        {
+            object[] parameter = { noun1, noun2 };
             return verbCard.Execute(parameter);
         }
         

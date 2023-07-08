@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 122951461}
   - component: {fileID: 122951460}
   - component: {fileID: 122951459}
-  - component: {fileID: 122951458}
+  - component: {fileID: 122951463}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -366,22 +366,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &122951458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122951457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce32de33aa6f40839541d92918363cda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 8
-  Strength: 3
-  Gold: 1
-  Turns: 0
 --- !u!23 &122951459
 MeshRenderer:
   m_ObjectHideFlags: 2
@@ -501,6 +485,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &122951463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122951457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c9b47c584e474ca9fcb11efef74d79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  Strength: 0
+  Gold: 0
+  Turns: 0
 --- !u!1 &144215842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,7 +1352,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerActor: {fileID: 89894479}
-  EnemyActors: []
+  EnemyActors:
+  - {fileID: 122951463}
   _executeRegion: {fileID: 307940320}
 --- !u!1001 &1697646728
 PrefabInstance:

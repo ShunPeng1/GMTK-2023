@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8332f51ef09e4f6a9db4b928b8e40149, type: 3}
   m_Name: Actor Health
   m_EditorClassIdentifier: 
-  WordCardType: 0
+  WordCardType: 1
   Priority: 0
   Name: '''s Health'
   Cost: 1
