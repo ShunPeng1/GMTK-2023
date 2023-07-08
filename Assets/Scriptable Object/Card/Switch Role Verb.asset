@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bfe531b76e44750bed74956b68aeebc, type: 3}
-  m_Name: Attack Verb
+  m_Script: {fileID: 11500000, guid: 7d725e5515eb4ee9aba18945038da9c9, type: 3}
+  m_Name: Switch Role Verb
   m_EditorClassIdentifier: 
   WordCardType: 3
   Priority: 0
-  Name: ' Attack '
+  Name: ' Switch Role to'
   Cost: 1
-  ParametersCount: 2
+  ParametersCount: 0
   ResultCount: 1
+  _actorRole: 0
