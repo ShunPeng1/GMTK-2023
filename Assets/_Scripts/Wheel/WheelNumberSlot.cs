@@ -19,7 +19,8 @@ public class WheelNumberSlot : MonoBehaviour
         _disc.Thickness = wheelArc.ArcThickness;
         
         _text.text = numberSlot.Number.ToString();
-        
+        _text.transform.localPosition = new Vector3(wheelArc.WheelRange, wheelArc.WheelRange * Mathf.Tan( _disc.AngRadiansEnd/2) ,0);
+        _text.transform.localRotation = Quaternion.Euler(0, 0, -90f + _disc.AngRadiansEnd/2);
     }
 }
     
