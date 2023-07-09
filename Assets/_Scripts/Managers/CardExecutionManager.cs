@@ -146,14 +146,14 @@ namespace _Scripts.Cards
             List<BaseCardInformation> reversedList = new List<BaseCardInformation>(cardsInformation);
             reversedList.Reverse();
             
-            for (int i = 0; i < cardsInformation.Count; i++)
+            for (int i = 0; i < reversedList.Count; i++)
             {
-                var cardInformation = cardsInformation[i];
+                var cardInformation = reversedList[i];
             
                 switch (cardInformation.WordCardType)
                 {
                     case WordCardType.Noun:
-                        if (verbStack.Count > 0 && verbStack.Peek().WordCardType == WordCardType.VerbPrefixUnary &&( i+1 >= cardsInformation.Count || cardsInformation[i+1].Priority > verbStack.Peek().Priority))
+                        if (verbStack.Count > 0 && verbStack.Peek().WordCardType == WordCardType.VerbPrefixUnary &&( i+1 >= reversedList.Count || reversedList[i+1].Priority > verbStack.Peek().Priority))
                         {
                             prefixVariables.Push(ExecuteVerb(verbStack.Pop(), cardInformation.Execute(null)));
                         }

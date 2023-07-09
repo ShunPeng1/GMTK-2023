@@ -42,7 +42,7 @@ namespace _Scripts.Actor
         {
             _animator = GetComponent<Animator>();
             Health.OnChangeValue += OnChangeHealth;
-
+            Strength.OnChangeValue += OnChangeStrength;
         }
         
         private void OnChangeHealth(float f, float f1)
@@ -54,20 +54,39 @@ namespace _Scripts.Actor
                 () =>
                 {
                     _animator.SetTrigger(Hit);
+                    UpdateUI();
+                    if(f1 <=0)
+                    {
+                        _animator.SetTrigger(Die);
+                    }
+                    
+                    //Debug.Log(gameObject.name + " Finish add sequence ");
                 }
             ).AppendInterval(_generalAnimationDuration);
-            UpdateUI();
-            if(f1 <=0)
-            {
-                _animator.SetTrigger(Die);
-            }
-            //Debug.Log(gameObject.name + " Finish add sequence ");
+            
+        }
+        
+        private void OnChangeStrength(float f, float f1)
+        {
+            //Debug.Log(gameObject.name + " HEALTH CHANGE " + f + " To " + f1);
+
+            
+            GameManager.Instance.OnNextBattleFieldSequence.AppendCallback(
+                () =>
+                {
+                    _animator.SetTrigger(Hit);
+                    UpdateUI();
+                    
+                    //Debug.Log(gameObject.name + " Finish add sequence ");
+                }
+            ).AppendInterval(_generalAnimationDuration);
+            
         }
 
         public void UpdateUI()
         {
-            _healthText.text = Health.ToString();
-            _strText.text = Strength.ToString();
+            _healthText.text = Health.Value.ToString();
+            _strText.text = Strength.Value.ToString();
         }
 
         public void Attack(ActorBehavior beingAttackedActor)
