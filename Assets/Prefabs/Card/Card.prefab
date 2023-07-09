@@ -413,6 +413,7 @@ MonoBehaviour:
   CardInformation: {fileID: 0}
   _spriteRenderer: {fileID: 6634041081169211042}
   _wordText: {fileID: 1451826639258645367}
+  _selectHighlightColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
 --- !u!61 &9136204727120022476
 BoxCollider2D:
   m_ObjectHideFlags: 0

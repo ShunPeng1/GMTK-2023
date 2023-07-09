@@ -79,6 +79,8 @@ namespace _Scripts.Managers
             _isDragging = true;
             _cardBeforeDragPosition = _draggingCard.transform.position;
 
+            _draggingCard.OnSelect();
+            
             if (_lastCardPlaceHolder == null)
             {
                 _lastCardPlaceRegion = null;
@@ -103,7 +105,8 @@ namespace _Scripts.Managers
         private void EndDragMouse()
         {
             if (!_isDragging) return;
-
+            
+            _draggingCard.OnDeselect();
             AddCardToHolder();
 
             _draggingCard = null;
