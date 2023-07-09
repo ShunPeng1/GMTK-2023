@@ -13,9 +13,11 @@ namespace _Scripts.Cards
     {
         [SerializeField] public ActorBehavior [] Actors;
         
+        [Header("Region and Button")]
         [SerializeField] private CardPlaceRegion _playerHandRegion;
         [SerializeField] private CardPlaceRegion _enemyPlaceRegion;
-
+        [SerializeField] private CardExecutionButton _enemyButton;
+        
         [Serializable]
         class PlayerHandCardDistribution
         {
@@ -77,6 +79,12 @@ namespace _Scripts.Cards
                 DrawCard(_enemyPlaceRegion,enemyBaseCard);
             }
             
+            
+            DOVirtual.DelayedCall(1.75f, () =>
+            {
+                _enemyButton.SnapAnimation(false);
+            });
+            
             DOVirtual.DelayedCall(2f, () =>
             {
                 ExecuteEnemyCardInformation(enemySentence.EnemyBaseCardInformation);
@@ -101,6 +109,7 @@ namespace _Scripts.Cards
                 Debug.LogError("WRONG ENEMY SENTENCES " + debug);
                 
                 _enemyPlaceRegion.DestroyAllCard();
+                _enemyButton.UnsnapAnimation();
             }
         }
         

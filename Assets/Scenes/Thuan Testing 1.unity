@@ -435,6 +435,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78515337f42145649b0b093455aca9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &882970976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4734437813510653248, guid: d1eda4ec83d132e4993526996a8b8580, type: 3}
+  m_PrefabInstance: {fileID: 1526622491}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9a3338ce2da8f648a0941bde6b66df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &890304597 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3414849537869644959, guid: 7965c02ce555ce242a4a760e81905c21, type: 3}
@@ -750,6 +761,7 @@ MonoBehaviour:
   - {fileID: 1854019129}
   _playerHandRegion: {fileID: 878654081}
   _enemyPlaceRegion: {fileID: 1644521914}
+  _enemyButton: {fileID: 882970976}
   _playerHandCardDistributions:
   - StartGameDrawCount: 2
     EveryTurnDrawCount: 1
@@ -832,6 +844,7 @@ MonoBehaviour:
   _lowerCraftBench: {fileID: 1754957688}
   _enemyCraftBench: {fileID: 1888804670}
   _cardExecutionButton: {fileID: 1720737199}
+  _enemyExecutionButton: {fileID: 882970976}
   _transitionDuration: 0.5
   _transitionEase: 9
   _transitionOffsetPosition: {x: 0, y: 18, z: 0}
@@ -920,7 +933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4734437813510653248, guid: d1eda4ec83d132e4993526996a8b8580, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4734437813510653249, guid: d1eda4ec83d132e4993526996a8b8580, type: 3}
       propertyPath: m_Color.b

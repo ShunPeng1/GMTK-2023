@@ -15,8 +15,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     }
 
     private int _turn;
-    
-    
     public Sequence OnNextBattleFieldSequence;
 
     
@@ -25,6 +23,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     [SerializeField] private GameObject _lowerCraftBench;
     [SerializeField] private GameObject _enemyCraftBench;
     [SerializeField] private CardExecutionButton _cardExecutionButton;
+    [SerializeField] private CardExecutionButton _enemyExecutionButton;
+    
     [SerializeField] private float _transitionDuration;
     [SerializeField] private Ease _transitionEase = Ease.OutCubic;
     [SerializeField] private Vector3 _transitionOffsetPosition = new Vector3(0, 10, 0);
@@ -76,7 +76,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         ShowEnemiesCraftBench();
         CreateSequence();
-
+        
+        
+        
         DOVirtual.DelayedCall(_transitionDuration, () =>
         {
             CardExecutionManager.Instance.StartEnemyTurn();
@@ -88,6 +90,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         ShowCraftBench();
         CreateSequence();
 
+        
+        _enemyExecutionButton.UnsnapAnimation();
         _cardExecutionButton.UnsnapAnimation();
         
         DOVirtual.DelayedCall(_transitionDuration, () =>

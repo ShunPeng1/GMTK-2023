@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using _Scripts.Cards;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardExecutionButton : MonoBehaviour
 {
     [SerializeField] private CardPlaceRegion _cardPlaceRegion;
 
-    [SerializeField] private float _moveDuration = 0.15f;
+    [SerializeField] private float _moveDuration = 0.25f;
     [SerializeField] private Ease _movingEase = Ease.OutCubic;
     
     [SerializeField] private Vector3 _initialLocalPosition;
@@ -22,18 +23,25 @@ public class CardExecutionButton : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(!_isSnapping) SnapAnimation();
+        Snap();
+    }
+
+    private void Snap()
+    {
+        if(!_isSnapping) SnapAnimation(true);
         else UnsnapAnimation();
     }
 
-
-    private void SnapAnimation()
+    public void SnapAnimation(bool isExecute)
     {
         
         _isSnapping = true;
          Vector3 nextFitPosition = _cardPlaceRegion.SnapFitAllCard();
          transform.DOMove(nextFitPosition,_moveDuration).SetEase(_movingEase).OnComplete(
-             ExecuteCardRegion);
+             () =>
+             {
+                 if (isExecute) ExecuteCardRegion();
+             });
     }
 
     public void UnsnapAnimation()
