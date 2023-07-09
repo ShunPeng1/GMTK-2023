@@ -9,13 +9,14 @@ public class MySceneManager : SingletonMonoBehaviour<MySceneManager>
 {
     [SerializeField] private AudioClip _buttonClip;
     [SerializeField] private AudioClip _BGMClip;
+    [SerializeField] GameObject SoundPanel;
     private void Start()
     {
         SoundManager.Instance.PlayBGM(_BGMClip);
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("Thuan Testing");
+        SceneManager.LoadScene("Thuan Testing 1");
     }
     public void Exit()
     {
@@ -36,5 +37,12 @@ public class MySceneManager : SingletonMonoBehaviour<MySceneManager>
     public void PlayButtonSound()
     {
         SoundManager.Instance.PlaySound(_buttonClip);
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SoundPanel.SetActive(true);
+        }
     }
 }
