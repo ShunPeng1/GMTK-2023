@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1451826639258645367, guid: d207a5580499e6d4a87f17a9b9173d93, type: 3}
       propertyPath: m_text
-      value: ' Attack  '
+      value: ' Is Reduced by '
       objectReference: {fileID: 0}
     - target: {fileID: 6634041081169211042, guid: d207a5580499e6d4a87f17a9b9173d93, type: 3}
       propertyPath: m_Size.x
