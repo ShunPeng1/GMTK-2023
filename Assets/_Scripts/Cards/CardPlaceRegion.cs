@@ -8,6 +8,9 @@ namespace _Scripts.Cards
     public class CardPlaceRegion : MonoBehaviour
     {
         [SerializeField] private Transform _spawnPlace;
+        [SerializeField] private Transform _snapPlace;
+
+        
         [SerializeField] private int _maxCardHold = new();
         [SerializeField] private Vector3 _cardOffset = new Vector3(5f, 0 ,0);
         
@@ -20,6 +23,7 @@ namespace _Scripts.Cards
         [Header("Smooth Move")] 
         [SerializeField] private float _moveDuration = 0.15f;
         [SerializeField] private Ease _moveEase = Ease.OutCubic;
+        [SerializeField] private Vector3 _snappingPosition = new Vector3(1, 0, 0);
         
         private void Start()
         {
@@ -46,6 +50,37 @@ namespace _Scripts.Cards
 
             return result;
         }
+
+        public Vector3 SnapFitAllCard()
+        {
+            int i = 0;
+            for (; i < _cardCount; i++)
+            {
+                SmoothMove(_cardPlaceHolders[i].transform, _snapPlace.transform.position + i * (_cardOffset - _snappingPosition));
+
+                if (_cardPlaceHolders[i].BaseCard != null)
+                {
+                    SmoothMove(_cardPlaceHolders[i].BaseCard.transform, _snapPlace.transform.position + i * (_cardOffset - _snappingPosition)); 
+                } 
+            }
+
+            return _snapPlace.transform.position + i * (_cardOffset - _snappingPosition);
+        }
+        
+        public Vector3 UnsnapFitAllCard()
+        {
+            int i = 0;
+            for (; i < _cardCount; i++)
+            {
+                SmoothMove(_cardPlaceHolders[i].transform, _spawnPlace.transform.position + i * (_cardOffset));
+
+                if (_cardPlaceHolders[i].BaseCard != null)  
+                    SmoothMove(_cardPlaceHolders[i].BaseCard.transform, _spawnPlace.transform.position + i * (_cardOffset));
+            }
+
+            return _spawnPlace.transform.position + i * (_cardOffset);
+        }
+
 
         public bool AddCard(BaseCard card, CardPlaceHolder cardPlaceHolder)
         {
