@@ -12,7 +12,7 @@ namespace _Scripts.Cards.CardsInformation
         {
             WordCardType = WordCardType.VerbBinary;
             Priority = 0;
-            Name = " Is Reduced by ";
+            Name = " Attack ";
             Cost = 1;
             ParametersCount = 2;
             ResultCount = 1;
