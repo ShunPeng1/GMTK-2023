@@ -212,5 +212,6 @@ MonoBehaviour:
     _value: 5
   Gold:
     _value: 5
-  Turns:
-    _value: 0
+  _animator: {fileID: 5264887306185211004}
+  _generalAnimationDuration: 1
+  _healthText: {fileID: 0}

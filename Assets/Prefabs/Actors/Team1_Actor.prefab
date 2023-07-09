@@ -128,8 +128,9 @@ MonoBehaviour:
     _value: 5
   Gold:
     _value: 5
-  Turns:
-    _value: 0
+  _animator: {fileID: 2902294370865611493}
+  _generalAnimationDuration: 1
+  _healthText: {fileID: 0}
 --- !u!1 &7119158865955709889
 GameObject:
   m_ObjectHideFlags: 0

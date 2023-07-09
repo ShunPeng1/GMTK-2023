@@ -6,6 +6,7 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityUtilities;
+using Sequence = DG.Tweening.Sequence;
 
 public class LevelManager : SingletonMonoBehaviour<LevelManager>
 {
@@ -28,7 +29,7 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
     private RandomBag<BaseCardInformation> _allyBag;
     private RandomBag<BaseCardInformation> _enemyBag;
 
-    public Action NextBattleFieldAnimations;
+    public Sequence OnNextBattleFieldSequence;
 
     
     [Header("Craft Bench Animation")]
@@ -38,14 +39,35 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
     [SerializeField] private Ease _transitionEase = Ease.OutCubic;
     [SerializeField] private Vector3 _transitionOffsetPosition = new Vector3(0, 10, 0);
 
+    private void Start()
+    {
+        OnNextBattleFieldSequence = DOTween.Sequence();
+        OnNextBattleFieldSequence.AppendCallback(() => { Debug.Log("APPEND START SEQUENCE"); }).AppendInterval(1f);
+        
+        OnNextBattleFieldSequence.OnKill(() => { Debug.Log("This was kill"); });
+        OnNextBattleFieldSequence.Pause();
+
+    }
 
     public void ShowBattleField()
     {
+        DOVirtual.DelayedCall(_transitionDuration, () =>
+        {
+            
+        });
         HideCraftBench();
-        DOVirtual.DelayedCall(_transitionDuration, () => {NextBattleFieldAnimations.Invoke(); });
+        OnNextBattleFieldSequence.AppendCallback(FinishBattleFieldAnimation).AppendInterval(2f);
+        
+        Debug.Log("Before Play");
+        OnNextBattleFieldSequence.Play();
         
     }
 
+    
+    private void FinishBattleFieldAnimation()
+    {
+        Debug.Log("Finish Animation");
+    }
     
     void ShowCraftBench()
     {

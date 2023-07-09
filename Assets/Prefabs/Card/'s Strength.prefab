@@ -102,6 +102,7 @@ MonoBehaviour:
   CardInformation: {fileID: 11400000, guid: 1dbf27885926bdb418a5e99ddb63f4b6, type: 2}
   _spriteRenderer: {fileID: 115302224228088228}
   _wordText: {fileID: 5894337231593774061}
+  _selectHighlightColor: {r: 0.15, g: 0.15, b: 0.15, a: 1}
 --- !u!61 &622578715129065699
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -228,7 +229,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '''s Health'
+  m_text: '''s Strength'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cd1feed45a6677d4989e4fe7d5323316, type: 2}
   m_sharedMaterial: {fileID: -2609150523951312717, guid: cd1feed45a6677d4989e4fe7d5323316, type: 2}
