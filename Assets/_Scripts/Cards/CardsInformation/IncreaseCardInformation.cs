@@ -8,15 +8,7 @@ namespace _Scripts.Cards.CardsInformation
     public class IncreaseCardInformation : BaseCardInformation
     {
     
-        public override void Awake()
-        {
-            WordCardType = WordCardType.VerbBinary;
-            Priority = 0;
-            Name = " Is Increase by ";
-            Cost = 1;
-            ParametersCount = 2;
-            ResultCount = 1;
-        }
+       
         
 
         public override object[] Execute(object[] array)

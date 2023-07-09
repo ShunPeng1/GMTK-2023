@@ -27,7 +27,7 @@ namespace _Scripts.Cards
         
         private List<object> _objectList = new();
 
-        public abstract void Awake();
+        
 
         public void AddObject(object obj)
         {

@@ -8,15 +8,8 @@ namespace _Scripts.Cards.CardsInformation
     public class ReduceCardInformation : BaseCardInformation
     {
     
-        public override void Awake()
-        {
-            WordCardType = WordCardType.VerbBinary;
-            Priority = 0;
-            Name = " Is Reduced by ";
-            Cost = 1;
-            ParametersCount = 2;
-            ResultCount = 1;
-        }
+        
+        
         
 
         public override object[] Execute(object[] array)

@@ -8,15 +8,8 @@ namespace _Scripts.Cards.CardsInformation
     public class GetActorCardInformation : BaseCardInformation
     {
         [SerializeField] private ActorRole _actorRole;
-        public override void Awake()
-        {
-            WordCardType = WordCardType.Noun;
-            Priority = 0;
-            Name = "ACTOR";
-            Cost = 1;
-            ParametersCount = 0;
-            ResultCount = 1;
-        }
+       
+        
 
         public override object[] Execute(object[] array)
         {

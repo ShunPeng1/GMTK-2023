@@ -8,15 +8,7 @@ namespace _Scripts.Cards.CardsInformation
     {
         [SerializeField] private ObservableData<float> _value;
         
-        public override void Awake()
-        {
-            WordCardType = WordCardType.Noun;
-            Priority = 0;
-            Name = $" {_value.Value}";
-            Cost = 0;
-            ParametersCount = 0;
-            ResultCount = 1;
-        }
+        
 
         public override object[] Execute(object[] array)
         {

@@ -8,16 +8,8 @@ namespace _Scripts.Cards.CardsInformation
     [CreateAssetMenu(fileName = "Card Information", menuName = "Card Information/All Actor" )]
     public class AllActorCardInformation : BaseCardInformation
     {
-        public override void Awake()
-        {
-            WordCardType = WordCardType.VerbPostfixUnary;
-            Priority = -3;
-            Name = " All ";
-            Cost = 1;
-            ParametersCount = 1;
-            ResultCount = 0;
-            
-        }
+        
+        
 
         public override object[] Execute(object[] array)
         {

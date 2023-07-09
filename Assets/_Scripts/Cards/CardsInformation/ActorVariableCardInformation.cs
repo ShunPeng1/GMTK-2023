@@ -17,16 +17,8 @@ namespace _Scripts.Cards.CardsInformation
         }
 
         [SerializeField] private Variable _actorVariable;
-        public override void Awake()
-        {
-            WordCardType = WordCardType.VerbPrefixUnary;
-            Priority = -2;
-            Name = "'s Health";
-            Cost = 1;
-            ParametersCount = 1;
-            ResultCount = 0;
-            
-        }
+        
+        
 
         public override object[] Execute(object[] array)
         {

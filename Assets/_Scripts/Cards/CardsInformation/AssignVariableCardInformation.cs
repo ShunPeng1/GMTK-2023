@@ -10,15 +10,7 @@ namespace _Scripts.Cards.CardsInformation
 
     public class AssignVariableCardInformation : BaseCardInformation
     {
-        public override void Awake()
-        {
-            WordCardType = WordCardType.VerbBinary;
-            Priority = 0;
-            Name = " is Assigned to";
-            Cost = 1;
-            ParametersCount = 2;
-            ResultCount = 1;
-        }
+        
 
         public override object[] Execute(object[] array)
         {

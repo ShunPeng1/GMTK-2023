@@ -10,15 +10,8 @@ namespace _Scripts.Cards.CardsInformation
     public class SwitchRoleCardInformation : BaseCardInformation
     {
         [SerializeField] private ActorRole _actorRole;
-        public override void Awake()
-        {
-            WordCardType = WordCardType.VerbBinary;
-            Priority = 0;
-            Name = " Switch Role to";
-            Cost = 1;
-            ParametersCount = 0;
-            ResultCount = 1;
-        }
+       
+        
         
         public override object[] Execute(object[] array)
         {

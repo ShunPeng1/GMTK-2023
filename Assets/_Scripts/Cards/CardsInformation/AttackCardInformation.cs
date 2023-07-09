@@ -8,15 +8,7 @@ namespace _Scripts.Cards.CardsInformation
     [CreateAssetMenu(fileName = "Card Information", menuName = "Card Information/Attack Verb" )]
     public class AttackCardInformation : BaseCardInformation
     {
-        public override void Awake()
-        {
-            WordCardType = WordCardType.VerbBinary;
-            Priority = 0;
-            Name = " Attack ";
-            Cost = 1;
-            ParametersCount = 2;
-            ResultCount = 1;
-        }
+        
         
         public override object[] Execute(object[] array)
         {
