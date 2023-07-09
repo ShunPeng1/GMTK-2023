@@ -44,6 +44,8 @@ namespace _Scripts.Actor
             _animator = GetComponent<Animator>();
             Health.OnChangeValue += OnChangeHealth;
             Strength.OnChangeValue += OnChangeStrength;
+
+            UpdateUI();
         }
         
         private void OnChangeHealth(float f, float f1)
