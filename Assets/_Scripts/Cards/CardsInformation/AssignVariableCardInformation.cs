@@ -45,7 +45,10 @@ namespace _Scripts.Cards.CardsInformation
             {
                 ((ObservableData<int>)parameters1[0]).Value = ((ObservableData<int>)parameters2[0]).Value;
             }
-            
+            else
+            {
+                throw new ArgumentException("Invalid code");
+            }
             return new object[] { };
         }
 

@@ -30,7 +30,10 @@ namespace _Scripts.Cards.CardsInformation
             {
                 return new object[] { CardExecutionManager.Instance.GetAllActorOfRole(((ActorBehavior) parameters1[0]).Role.Value) };
             }
-            
+            else
+            {
+                throw new ArgumentException("Invalid code");
+            }
             return new object[] { };
             
         }

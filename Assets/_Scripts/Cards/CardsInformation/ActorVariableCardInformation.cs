@@ -49,7 +49,10 @@ namespace _Scripts.Cards.CardsInformation
                 }
                 return new object[] { result };
             }
-            
+            else
+            {
+                throw new ArgumentException("Invalid code");
+            }
             return new object[] { };
         }
 

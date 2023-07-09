@@ -61,7 +61,10 @@ namespace _Scripts.Cards.CardsInformation
                     actor.Role.Value = GetRole(actorBehaviors2[0]);
                 }
             }
-            
+            else
+            {
+                throw new ArgumentException("Invalid code");
+            }
             return new object[] { };
         }
 
