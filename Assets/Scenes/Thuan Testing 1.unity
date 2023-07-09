@@ -766,24 +766,13 @@ MonoBehaviour:
   - {fileID: 1854019129}
   _playerHandRegion: {fileID: 878654081}
   _enemyPlaceRegion: {fileID: 1644521914}
-  _allyCards:
-  - {fileID: 11400000, guid: e4f2a4e7b6a328948b9ddd083755f69c, type: 2}
-  - {fileID: 11400000, guid: e4f2a4e7b6a328948b9ddd083755f69c, type: 2}
-  - {fileID: 11400000, guid: 1ff2bdbd23ffdf84a8e1c8381677def4, type: 2}
-  - {fileID: 11400000, guid: 1ff2bdbd23ffdf84a8e1c8381677def4, type: 2}
-  - {fileID: 11400000, guid: 89a99324524ba9743a5a7229f6d4a11a, type: 2}
-  - {fileID: 11400000, guid: 7433e17f45c46734296c846317f159d4, type: 2}
-  - {fileID: 11400000, guid: 4487a4c25bc4fd2418974d136c95e4bc, type: 2}
-  - {fileID: 11400000, guid: 4487a4c25bc4fd2418974d136c95e4bc, type: 2}
-  - {fileID: 11400000, guid: 18ddc4757ea1a8345a8dcac7dd4e8581, type: 2}
-  - {fileID: 11400000, guid: 1dbf27885926bdb418a5e99ddb63f4b6, type: 2}
-  - {fileID: 11400000, guid: 4c7fddc0dada89548a49d00093540f4e, type: 2}
   _playerHandCardDistributions:
-  - StartGameDrawCount: 1
+  - StartGameDrawCount: 2
     EveryTurnDrawCount: 1
     Cards:
     - {fileID: 11400000, guid: 1dbf27885926bdb418a5e99ddb63f4b6, type: 2}
     - {fileID: 11400000, guid: 4c7fddc0dada89548a49d00093540f4e, type: 2}
+    - {fileID: 11400000, guid: 238b4d1cae520eb4dab70fa664d23147, type: 2}
   - StartGameDrawCount: 2
     EveryTurnDrawCount: 2
     Cards:
@@ -794,16 +783,18 @@ MonoBehaviour:
     Cards:
     - {fileID: 11400000, guid: 7433e17f45c46734296c846317f159d4, type: 2}
     - {fileID: 11400000, guid: 89a99324524ba9743a5a7229f6d4a11a, type: 2}
+    - {fileID: 11400000, guid: c6cf20015d527a542b14ab489cc35695, type: 2}
     - {fileID: 11400000, guid: 18ddc4757ea1a8345a8dcac7dd4e8581, type: 2}
-  - StartGameDrawCount: 2
-    EveryTurnDrawCount: 1
-    Cards:
-    - {fileID: 11400000, guid: 4487a4c25bc4fd2418974d136c95e4bc, type: 2}
-    - {fileID: 11400000, guid: 4487a4c25bc4fd2418974d136c95e4bc, type: 2}
+    - {fileID: 11400000, guid: 18ddc4757ea1a8345a8dcac7dd4e8581, type: 2}
+    - {fileID: 11400000, guid: 18ddc4757ea1a8345a8dcac7dd4e8581, type: 2}
   - StartGameDrawCount: 1
     EveryTurnDrawCount: 1
     Cards:
+    - {fileID: 11400000, guid: b9783b2d45b83394ead5cb96d89bf483, type: 2}
     - {fileID: 11400000, guid: 4487a4c25bc4fd2418974d136c95e4bc, type: 2}
+    - {fileID: 11400000, guid: 0585a98045f981645b9c0bf0f8c65d65, type: 2}
+    - {fileID: 11400000, guid: 1df86627286a82d4d9c351e03065aa66, type: 2}
+    - {fileID: 11400000, guid: 69911e31f478d074a8dc034dbfbc4102, type: 2}
 --- !u!1 &1429291390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,7 +1336,7 @@ PrefabInstance:
     - target: {fileID: 3414849537869644956, guid: 7965c02ce555ce242a4a760e81905c21, type: 3}
       propertyPath: _baseCards.Array.data[1]
       value: 
-      objectReference: {fileID: 6161607891278161391, guid: 6f6847c3508714449b6f49150ec26aac, type: 3}
+      objectReference: {fileID: 4525365752500074475, guid: 6c542a4775ce7b142802dccbc43bcfab, type: 3}
     - target: {fileID: 3414849537869644956, guid: 7965c02ce555ce242a4a760e81905c21, type: 3}
       propertyPath: _baseCards.Array.data[2]
       value: 
@@ -1385,19 +1376,19 @@ PrefabInstance:
     - target: {fileID: 3414849537869644956, guid: 7965c02ce555ce242a4a760e81905c21, type: 3}
       propertyPath: _baseCards.Array.data[11]
       value: 
-      objectReference: {fileID: 9136204727120022472, guid: d207a5580499e6d4a87f17a9b9173d93, type: 3}
+      objectReference: {fileID: 2197879649201456130, guid: c2ec588762f0a674a8b1c2462e4869c9, type: 3}
     - target: {fileID: 3414849537869644956, guid: 7965c02ce555ce242a4a760e81905c21, type: 3}
       propertyPath: _baseCards.Array.data[12]
       value: 
-      objectReference: {fileID: 2197879649201456130, guid: c2ec588762f0a674a8b1c2462e4869c9, type: 3}
+      objectReference: {fileID: 342908680572673377, guid: 6651565972b844440892fbe3e753f337, type: 3}
     - target: {fileID: 3414849537869644956, guid: 7965c02ce555ce242a4a760e81905c21, type: 3}
       propertyPath: _baseCards.Array.data[13]
       value: 
-      objectReference: {fileID: 342908680572673377, guid: 6651565972b844440892fbe3e753f337, type: 3}
+      objectReference: {fileID: 611319325310119264, guid: d1d74f81308612b488f85ce841bdce7f, type: 3}
     - target: {fileID: 3414849537869644956, guid: 7965c02ce555ce242a4a760e81905c21, type: 3}
       propertyPath: _baseCards.Array.data[14]
       value: 
-      objectReference: {fileID: 611319325310119264, guid: d1d74f81308612b488f85ce841bdce7f, type: 3}
+      objectReference: {fileID: 4651592516671930730, guid: be12cd67ea278d84aad2035d5d842366, type: 3}
     - target: {fileID: 3414849537869644958, guid: 7965c02ce555ce242a4a760e81905c21, type: 3}
       propertyPath: m_Name
       value: Resource Manager

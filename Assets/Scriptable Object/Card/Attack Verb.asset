@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WordCardType: 3
   Priority: 0
-  Name: ' Attack  '
+  Name: Attack
   Cost: 1
   ParametersCount: 2
   ResultCount: 1

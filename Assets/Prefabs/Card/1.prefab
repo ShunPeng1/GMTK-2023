@@ -27,6 +27,10 @@ PrefabInstance:
       propertyPath: CardInformation
       value: 
       objectReference: {fileID: 11400000, guid: b9783b2d45b83394ead5cb96d89bf483, type: 2}
+    - target: {fileID: 9136204727120022472, guid: d207a5580499e6d4a87f17a9b9173d93, type: 3}
+      propertyPath: _activeValidate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9136204727120022473, guid: d207a5580499e6d4a87f17a9b9173d93, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -77,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9136204727120022476, guid: d207a5580499e6d4a87f17a9b9173d93, type: 3}
       propertyPath: m_SpriteTilingProperty.border.x
-      value: 1.27
+      value: 1.1999999
       objectReference: {fileID: 0}
     - target: {fileID: 9136204727120022476, guid: d207a5580499e6d4a87f17a9b9173d93, type: 3}
       propertyPath: m_SpriteTilingProperty.border.y
@@ -85,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9136204727120022476, guid: d207a5580499e6d4a87f17a9b9173d93, type: 3}
       propertyPath: m_SpriteTilingProperty.border.z
-      value: 1.25
+      value: 1.1899999
       objectReference: {fileID: 0}
     - target: {fileID: 9136204727120022476, guid: d207a5580499e6d4a87f17a9b9173d93, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x

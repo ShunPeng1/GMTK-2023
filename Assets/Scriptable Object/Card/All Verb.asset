@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: All Verb
   m_EditorClassIdentifier: 
   WordCardType: 2
-  Priority: 0
+  Priority: -3
   Name: ' All '
   Cost: 1
   ParametersCount: 1

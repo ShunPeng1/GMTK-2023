@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Actor Strength
   m_EditorClassIdentifier: 
   WordCardType: 1
-  Priority: 0
-  Name: '''s Strenght'
+  Priority: -2
+  Name: '''s Strength'
   Cost: 1
   ParametersCount: 1
   ResultCount: 0

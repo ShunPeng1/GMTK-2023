@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Actor Health
   m_EditorClassIdentifier: 
   WordCardType: 1
-  Priority: 0
+  Priority: -2
   Name: '''s Health'
   Cost: 1
   ParametersCount: 1
