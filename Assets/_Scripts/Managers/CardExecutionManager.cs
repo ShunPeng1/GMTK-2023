@@ -139,6 +139,18 @@ namespace _Scripts.Cards
         public void RemoveActor(ActorBehavior actorBehavior)
         {
             Actors.Remove(actorBehavior);
+
+            if (GetFirstActorOfRole(ActorRole.Ally) == null)
+            {
+                VisualManager.Instance.GameOver();
+                GameManager.Instance.IsGameOver = true;
+            }
+            
+            if (GetFirstActorOfRole(ActorRole.Enemy) == null)
+            {
+                VisualManager.Instance.Victory();
+                GameManager.Instance.IsGameOver = true;
+            }
         }
 
         public void Execute(List<BaseCardInformation> cardsInformation)

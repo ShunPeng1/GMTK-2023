@@ -16,7 +16,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     private int _turn;
     public Sequence OnNextBattleFieldSequence;
-
+    public bool IsGameOver = false;
     
     [Header("Craft Bench Animation")]
     [SerializeField] private GameObject _upperCraftBench;
@@ -74,6 +74,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     
     private void FinishPlayerBattleFieldAnimation()
     {
+        if (IsGameOver) return;
         ShowEnemiesCraftBench();
         CreateSequence();
         
@@ -81,12 +82,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         
         DOVirtual.DelayedCall(_transitionDuration, () =>
         {
+            if (IsGameOver) return;
             CardExecutionManager.Instance.StartEnemyTurn();
         });
     }
 
     private void FinishEnemyBattleFieldAnimation()
     {
+        if (IsGameOver) return;
+        
         ShowCraftBench();
         CreateSequence();
 
@@ -96,6 +100,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         
         DOVirtual.DelayedCall(_transitionDuration, () =>
         {
+            if (IsGameOver) return;
             CardExecutionManager.Instance.StartPlayerTurn();
         });
     }
