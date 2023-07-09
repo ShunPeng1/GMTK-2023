@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ae4e206ba9495099547c5cf593a6c7, type: 3}
   m_Name: Assign Verb
   m_EditorClassIdentifier: 
-  WordCardType: 2
+  WordCardType: 3
   Priority: 0
   Name: ' Is Assign to '
   Cost: 1

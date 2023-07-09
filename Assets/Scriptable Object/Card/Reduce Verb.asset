@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8be3160c83a54e7c9ba8ee04a8f2ed55, type: 3}
   m_Name: Reduce Verb
   m_EditorClassIdentifier: 
-  WordCardType: 2
+  WordCardType: 3
   Priority: 0
   Name: ' Is Reduced by '
   Cost: 1

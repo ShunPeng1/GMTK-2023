@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b49d454187420fad72ee7894880101, type: 3}
   m_Name: Float 2
   m_EditorClassIdentifier: 
-  WordCardType: 0
+  WordCardType: 5
   Priority: 0
   Name: ' 2'
   Cost: 0
