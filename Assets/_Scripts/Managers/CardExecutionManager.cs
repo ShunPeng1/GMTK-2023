@@ -26,7 +26,6 @@ namespace _Scripts.Cards
                      
         }
         
-        [SerializeField] private BaseCardInformation[] _allyCards;
         [SerializeField] private List<BaseCardInformation>[] _enemySentences;
 
         [SerializeField] private PlayerHandCardDistribution [] _playerHandCardDistributions;
@@ -95,23 +94,23 @@ namespace _Scripts.Cards
 
             // Reverse 
             cardsInformation.Reverse();
-            
-            foreach (var cardInformation in cardsInformation) // loop in reverse 
+
+            for (int i = 0; i < cardsInformation.Count; i++)
             {
+                var cardInformation = cardsInformation[i];
+            
                 switch (cardInformation.WordCardType)
                 {
                     case WordCardType.Noun:
-                        prefixVariables.Push(cardInformation.Execute(null));
+                        if (verbStack.Count > 0 && verbStack.Peek().WordCardType == WordCardType.VerbPrefixUnary &&( i+1 >= cardsInformation.Count || cardsInformation[i+1].Priority > verbStack.Peek().Priority))
+                        {
+                            prefixVariables.Push(ExecuteVerb(verbStack.Pop(), cardInformation.Execute(null)));
+                        }
+                        else prefixVariables.Push(cardInformation.Execute(null));
                         break;
                     
                     
                     case WordCardType.VerbPrefixUnary:
-                        while (verbStack.Count > 0 && cardInformation.Priority < verbStack.Peek().Priority)
-                        {
-                            prefixVariables.Push(ExecuteVerb(verbStack.Pop(), prefixVariables.Pop()));
-                        }
-                        
-                        // Push the current operator onto the operator stack
                         verbStack.Push(cardInformation);
                         break;
                     

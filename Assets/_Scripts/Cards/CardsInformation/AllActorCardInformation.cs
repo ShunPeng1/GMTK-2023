@@ -11,7 +11,7 @@ namespace _Scripts.Cards.CardsInformation
         public override void Awake()
         {
             WordCardType = WordCardType.VerbPostfixUnary;
-            Priority = 0;
+            Priority = -3;
             Name = " All ";
             Cost = 1;
             ParametersCount = 1;

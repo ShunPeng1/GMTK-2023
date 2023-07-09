@@ -20,7 +20,7 @@ namespace _Scripts.Cards.CardsInformation
         public override void Awake()
         {
             WordCardType = WordCardType.VerbPrefixUnary;
-            Priority = 0;
+            Priority = -2;
             Name = "'s Health";
             Cost = 1;
             ParametersCount = 1;
