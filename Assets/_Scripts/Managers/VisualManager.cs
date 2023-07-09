@@ -75,4 +75,12 @@ public class VisualManager : SingletonMonoBehaviour<VisualManager>
     {
         SceneManager.LoadScene("MainMenu");
     }
+    
+    
+    public void GetNextScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = (currentSceneIndex + 1) % SceneManager.sceneCountInBuildSettings;
+        SceneManager.LoadScene(nextSceneIndex);
+    }
 }

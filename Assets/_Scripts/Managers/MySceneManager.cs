@@ -58,4 +58,12 @@ public class MySceneManager : SingletonMonoBehaviour<MySceneManager>
             SoundPanel.SetActive(true);
         }
     }
+    
+    public void GetNextScene()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = (currentSceneIndex + 1) % SceneManager.sceneCountInBuildSettings;
+        SceneManager.LoadScene(nextSceneIndex);
+    }
+
 }
