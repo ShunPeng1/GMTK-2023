@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _Scripts.Cards
@@ -10,13 +11,24 @@ namespace _Scripts.Cards
         [SerializeField] private int _maxCardHold = new();
         [SerializeField] private Vector3 _cardOffset = new Vector3(5f, 0 ,0);
         
+        [SerializeField] public bool IsSort = true;
         
-        private readonly List<CardPlaceHolder> _cardPlaceHolders = new();
+        [SerializeField] private readonly List<CardPlaceHolder> _cardPlaceHolders = new();
         private CardPlaceHolder _temporaryCardHolder;
         [SerializeField] private int _cardCount = 0;
 
+        [Header("Smooth Move")] 
+        [SerializeField] private float _moveDuration = 0.15f;
+        [SerializeField] private Ease _moveEase = Ease.OutCubic;
+        
         private void Start()
         {
+            if (_cardPlaceHolders.Count != 0)
+            {
+                _maxCardHold = _cardPlaceHolders.Count;
+                return;
+            }
+            
             for (int i = 0; i < _maxCardHold; i++)
             {
                 _cardPlaceHolders.Add( Instantiate(ResourceManager.Instance.CardPlaceHolder, _spawnPlace.position + i * _cardOffset, Quaternion.identity, _spawnPlace));
@@ -41,9 +53,18 @@ namespace _Scripts.Cards
             {
                 return false;
             }
-            
-            int index = _cardPlaceHolders.IndexOf(cardPlaceHolder);
 
+            int index = 0;
+            if (cardPlaceHolder == null)
+            {
+                cardPlaceHolder = _cardPlaceHolders[_cardCount];
+                index = _cardCount ;
+            }
+            else
+            {
+                index = _cardPlaceHolders.IndexOf(cardPlaceHolder);
+            }
+            
             if (index >= _cardCount)
             {
                 index = _cardCount ;
@@ -55,7 +76,7 @@ namespace _Scripts.Cards
                 return true;
             }
             
-            ShiftRight(index);
+            if(IsSort) ShiftRight(index);
             
             _cardPlaceHolders[index].BaseCard = card;
             card.transform.position = _cardPlaceHolders[index].transform.position;
@@ -113,7 +134,7 @@ namespace _Scripts.Cards
             if (cardPlaceHolder.BaseCard != card) return false;
             
             cardPlaceHolder.BaseCard = null;
-            ShiftLeft(_cardPlaceHolders.IndexOf(cardPlaceHolder));
+            if(IsSort) ShiftLeft(_cardPlaceHolders.IndexOf(cardPlaceHolder));
             _cardCount--;
 
             return true;
@@ -142,8 +163,13 @@ namespace _Scripts.Cards
 
         public bool TakeOutTemporary(BaseCard card,CardPlaceHolder cardPlaceHolder)
         {
-            _temporaryCardHolder = cardPlaceHolder;
-            return RemoveCard(card,cardPlaceHolder);;
+            if (RemoveCard(card, cardPlaceHolder))
+            {
+                
+                _temporaryCardHolder = cardPlaceHolder;
+                return true;
+            }
+            return false;
         }
         
         public void ReAddTemporary(BaseCard baseCard)
@@ -156,6 +182,11 @@ namespace _Scripts.Cards
         public void RemoveTemporary(BaseCard baseCard)
         {
             _temporaryCardHolder = null;
+        }
+
+        private void SmoothMove(Transform from, Transform to)
+        {
+            from.DOMove(to.position, _moveDuration).SetEase(_moveEase);
         }
     }
 }

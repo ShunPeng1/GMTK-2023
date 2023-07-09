@@ -13,6 +13,7 @@ namespace _Scripts.Managers
         [Header("Drag Objects")]
         private bool _isDragging = false;
         private Vector3 _cardOffset;
+        private Vector3 _cardBeforeDragPosition;
         private BaseCard _draggingCard;
         private CardPlaceRegion _lastCardPlaceRegion;
         private CardPlaceHolder _lastCardPlaceHolder;
@@ -76,8 +77,13 @@ namespace _Scripts.Managers
             
             _cardOffset = _draggingCard.transform.position - _mousePosition;
             _isDragging = true;
+            _cardBeforeDragPosition = _draggingCard.transform.position;
 
-            if (_lastCardPlaceHolder == null) return;
+            if (_lastCardPlaceHolder == null)
+            {
+                _lastCardPlaceRegion = null;
+                return;
+            }
             if (!_lastCardPlaceRegion.TakeOutTemporary(_draggingCard, _lastCardPlaceHolder))
             {
                 _lastCardPlaceHolder = null;
@@ -97,14 +103,33 @@ namespace _Scripts.Managers
         private void EndDragMouse()
         {
             if (!_isDragging) return;
+
+            AddCardToHolder();
+
+            _draggingCard = null;
+            _lastCardPlaceHolder = null;
+            _lastCardPlaceRegion = null;
+            _isDragging = false;
+
+        }
+
+        private void AddCardToHolder()
+        {
             
             var placeRegion = CastMouseFindFirst<CardPlaceRegion>();
             var placeHolder = CastMouseFindFirst<CardPlaceHolder>();
             
-            _draggingCard.transform.position = _mousePosition + _cardOffset;
-            
             if (placeHolder == null)
             {
+                if (placeRegion != null && placeRegion != _lastCardPlaceRegion && placeRegion.AddCard(_draggingCard, placeHolder))
+                {
+                    if (_lastCardPlaceHolder != null)
+                    {
+                        _lastCardPlaceRegion.RemoveTemporary(_draggingCard);
+                        return;
+                    }
+                }
+                
                 if (_lastCardPlaceRegion != null) _lastCardPlaceRegion.ReAddTemporary(_draggingCard);
             }
             else
@@ -113,24 +138,15 @@ namespace _Scripts.Managers
                 {
                     if(_lastCardPlaceRegion != null) _lastCardPlaceRegion.ReAddTemporary(_draggingCard);
                 }
-                else
-                {
-                    
-                }
+                
                 if (_lastCardPlaceHolder != null)
                 {
                     _lastCardPlaceRegion.RemoveTemporary(_draggingCard);
                 }
 
             }
-            
-            _draggingCard = null;
-            _lastCardPlaceHolder = null;
-            _lastCardPlaceRegion = null;
-            _isDragging = false;
 
         }
-        
         
     }
 }
