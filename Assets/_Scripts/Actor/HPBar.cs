@@ -8,7 +8,7 @@ public class HPBar : MonoBehaviour
     Transform Bar;
     void Start()
     {
-        Bar = transform.FindChild("Bar");
+        Bar = transform.Find("Bar");
     }
 
     // Update is called once per frame

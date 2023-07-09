@@ -23,6 +23,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     [Header("Craft Bench Animation")]
     [SerializeField] private GameObject _upperCraftBench;
     [SerializeField] private GameObject _lowerCraftBench;
+    [SerializeField] private GameObject _enemyCraftBench;
     [SerializeField] private CardExecutionButton _cardExecutionButton;
     [SerializeField] private float _transitionDuration;
     [SerializeField] private Ease _transitionEase = Ease.OutCubic;
@@ -34,13 +35,27 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         CreateSequence();
     }
 
-    public void ShowBattleField()
+    public void ShowPlayerBattleField()
     {
-        HideCraftBench();
+        HidePlayerCraftBench();
      
         DOVirtual.DelayedCall(_transitionDuration, () =>
         {
-            OnNextBattleFieldSequence.AppendCallback(FinishBattleFieldAnimation).AppendInterval(2f);
+            OnNextBattleFieldSequence.AppendCallback(FinishPlayerBattleFieldAnimation).AppendInterval(2f);
+        
+            Debug.Log("Before Play");
+            OnNextBattleFieldSequence.Play();
+        });
+        
+    }
+    
+    public void ShowEnemyBattleField()
+    {
+        HideEnemyCraftBench();
+     
+        DOVirtual.DelayedCall(_transitionDuration, () =>
+        {
+            OnNextBattleFieldSequence.AppendCallback(FinishEnemyBattleFieldAnimation).AppendInterval(2f);
         
             Debug.Log("Before Play");
             OnNextBattleFieldSequence.Play();
@@ -57,7 +72,18 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     }
     
     
-    private void FinishBattleFieldAnimation()
+    private void FinishPlayerBattleFieldAnimation()
+    {
+        ShowEnemiesCraftBench();
+        CreateSequence();
+
+        DOVirtual.DelayedCall(_transitionDuration, () =>
+        {
+            CardExecutionManager.Instance.StartEnemyTurn();
+        });
+    }
+
+    private void FinishEnemyBattleFieldAnimation()
     {
         ShowCraftBench();
         CreateSequence();
@@ -69,7 +95,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             CardExecutionManager.Instance.StartPlayerTurn();
         });
     }
-
+    
     void ShowCraftBench()
     {
         _upperCraftBench.transform.DOMove(-_transitionOffsetPosition, _transitionDuration).SetRelative()
@@ -81,14 +107,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     
     void ShowEnemiesCraftBench()
     {
-        _upperCraftBench.transform.DOMove(-_transitionOffsetPosition, _transitionDuration).SetRelative()
-            .SetEase(_transitionEase);
-        
-        _lowerCraftBench.transform.DOMove(_transitionOffsetPosition, _transitionDuration).SetRelative()
+        _enemyCraftBench.transform.DOMove(-_transitionOffsetPosition, _transitionDuration).SetRelative()
             .SetEase(_transitionEase);
     }
 
-    void HideCraftBench()
+    void HidePlayerCraftBench()
     {
         _upperCraftBench.transform.DOMove(_transitionOffsetPosition, _transitionDuration).SetRelative()
             .SetEase(_transitionEase);
@@ -97,4 +120,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             .SetEase(_transitionEase);
     }
     
+    void HideEnemyCraftBench()
+    {
+        _enemyCraftBench.transform.DOMove(_transitionOffsetPosition, _transitionDuration).SetRelative()
+            .SetEase(_transitionEase);
+    }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using _Scripts.Actor;
+using DG.Tweening;
 using UnityEngine;
 using UnityUtilities;
 
@@ -11,9 +12,6 @@ namespace _Scripts.Cards
     {
         [SerializeField] public ActorBehavior [] Actors;
         
-        private List<object> _objectList = new();
-        private List<BaseCardInformation> _prefixCardInformations = new();
-
         [SerializeField] private CardPlaceRegion _playerHandRegion;
         [SerializeField] private CardPlaceRegion _enemyPlaceRegion;
 
@@ -25,13 +23,18 @@ namespace _Scripts.Cards
             public BaseCardInformation[] Cards;
                      
         }
+
+        [Serializable]
+        class EnemySentenceDistribution
+        {
+            public List<BaseCardInformation> EnemyBaseCardInformation;
+        }
         
-        [SerializeField] private List<BaseCardInformation>[] _enemySentences;
-
         [SerializeField] private PlayerHandCardDistribution [] _playerHandCardDistributions;
-        private Dictionary<PlayerHandCardDistribution, RandomBag<BaseCardInformation>> _playerDrawSet = new ();
+        [SerializeField] private EnemySentenceDistribution[] _enemySentences;
 
-        private RandomBag<BaseCardInformation> _enemyBag;
+        private Dictionary<PlayerHandCardDistribution, RandomBag<BaseCardInformation>> _playerDrawSet = new ();
+        private RandomBag<EnemySentenceDistribution> _enemyBagSentence;
 
         private void Awake()
         {
@@ -40,6 +43,8 @@ namespace _Scripts.Cards
                 RandomBag<BaseCardInformation> bag = new RandomBag<BaseCardInformation>(playerHandCardDistribution.Cards,1);
                 _playerDrawSet.Add(playerHandCardDistribution, bag);
             }
+
+            _enemyBagSentence = new RandomBag<EnemySentenceDistribution>(_enemySentences,1);
         }
 
         private void Start()
@@ -48,7 +53,7 @@ namespace _Scripts.Cards
             {
                 for (int i = 0; i < playerHandCardDistribution.StartGameDrawCount; i++)
                 {
-                    DrawCard(bag);
+                    DrawCard(_playerHandRegion,bag.PopRandomItem());
                 }
             }
         }
@@ -59,16 +64,51 @@ namespace _Scripts.Cards
             {
                 for (int i = 0; i < playerHandCardDistribution.EveryTurnDrawCount; i++)
                 {
-                    DrawCard(bag);
+                    DrawCard(_playerHandRegion,bag.PopRandomItem());
                 }
             }
         }
-        public void DrawCard(RandomBag<BaseCardInformation> bag)
+        
+        public void StartEnemyTurn()
         {
-            var cardPlaceHolder = _playerHandRegion.FindEmptyCardPlaceHolder();
+            var enemySentence = _enemyBagSentence.PopRandomItem();
+
+            foreach (var enemyBaseCard in enemySentence.EnemyBaseCardInformation)
+            {
+                DrawCard(_enemyPlaceRegion,enemyBaseCard);
+            }
+            
+            DOVirtual.DelayedCall(2f, () =>
+            {
+                ExecuteEnemyCardInformation(enemySentence.EnemyBaseCardInformation);
+            });
+            
+            
+        }
+
+        private void ExecuteEnemyCardInformation(List<BaseCardInformation> enemySentence)
+        {
+            
+            try
+            {
+                Execute(enemySentence);
+                _enemyPlaceRegion.DestroyAllCard();
+                GameManager.Instance.ShowEnemyBattleField();
+                
+            }
+            catch (Exception e)
+            {
+                string debug = enemySentence.Aggregate("", (current, enemyBaseCardInformation) => current + enemyBaseCardInformation.Name);
+                Debug.LogError("WRONG ENEMY SENTENCES " + debug);
+            }
+        }
+        
+        public void DrawCard(CardPlaceRegion placeRegion, BaseCardInformation baseCardInformation)
+        {
+            var cardPlaceHolder = placeRegion.FindEmptyCardPlaceHolder();
             if (cardPlaceHolder == null) return;
-            BaseCard baseCard = Instantiate(ResourceManager.Instance.GetBaseCard(bag.PopRandomItem()), cardPlaceHolder.transform.position, Quaternion.identity);
-            _playerHandRegion.AddCard(baseCard, null);
+            BaseCard baseCard = Instantiate(ResourceManager.Instance.GetBaseCard(baseCardInformation), cardPlaceHolder.transform.position, Quaternion.identity);
+            placeRegion.AddCard(baseCard, null);
         }
         
         public ActorBehavior[] GetAllActorOfRole(ActorRole actorRole)

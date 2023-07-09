@@ -50,7 +50,7 @@ public class CardExecutionButton : MonoBehaviour
             Debug.Log("EXECUTE ");
             CardExecutionManager.Instance.Execute(_cardPlaceRegion.GetCardsInformation());
             _cardPlaceRegion.DestroyAllCard();
-            GameManager.Instance.ShowBattleField();
+            GameManager.Instance.ShowPlayerBattleField();
         }
         catch (Exception e)
         {
