@@ -50,3 +50,6 @@ TagManager:
   - name: Word On Object
     uniqueID: 1520008449
     locked: 0
+  - name: Panel
+    uniqueID: 252239149
+    locked: 0

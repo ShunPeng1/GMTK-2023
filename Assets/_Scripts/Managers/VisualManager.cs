@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using _Scripts.Cards;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityUtilities;
 
 public class VisualManager : SingletonMonoBehaviour<VisualManager>
@@ -20,9 +21,14 @@ public class VisualManager : SingletonMonoBehaviour<VisualManager>
 
 
     [SerializeField] private AudioClip BGM;
+
+    [SerializeField] private GameObject GameOverPanel;
+    [SerializeField] private GameObject VictoryPanel;
     private void Awake()
     {
         //SoundManager.Instance.PlayBGM(BGM);
+        GameOverPanel.SetActive(false);
+        VictoryPanel.SetActive(false);
     }
     public Color GetColorCard(WordCardType wordCardType)
     {
@@ -53,5 +59,20 @@ public class VisualManager : SingletonMonoBehaviour<VisualManager>
             _ => _inOutJigsawColorSprite
         };
     }
-    
+    public void GameOver()
+    {
+        GameOverPanel.SetActive(true);
+    }
+    public void Victory()
+    {
+        VictoryPanel.SetActive(true);
+    }
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void Home()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

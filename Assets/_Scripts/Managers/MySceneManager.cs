@@ -32,7 +32,9 @@ public class MySceneManager : SingletonMonoBehaviour<MySceneManager>
     }
     public void Credit()
     {
-        //SceneManager.LoadScene("Credit");
+        Application.OpenURL("https://rgsdev.itch.io/free-cc0-modular-animated-vector-characters-2d");
+        Application.OpenURL("https://jdsherbert.itch.io/minigame-music-pack");
+        Application.OpenURL("https://penzilla.itch.io/handdrawn-vector-icon-pack");
     }
     public void PlayButtonSound()
     {
@@ -41,6 +43,17 @@ public class MySceneManager : SingletonMonoBehaviour<MySceneManager>
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            OpenSoundPanel();
+        }
+    }
+    public void OpenSoundPanel()
+    {
+        if(SoundPanel.activeInHierarchy == true)
+        {
+            SoundPanel.SetActive(false);
+        }
+        else
         {
             SoundPanel.SetActive(true);
         }
