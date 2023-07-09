@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bfe531b76e44750bed74956b68aeebc, type: 3}
-  m_Name: Attack Verb
+  m_Script: {fileID: 11500000, guid: 39b49d454187420fad72ee7894880101, type: 3}
+  m_Name: Float 5
   m_EditorClassIdentifier: 
-  WordCardType: 3
+  WordCardType: 0
   Priority: 0
-  Name: ' Attack  '
-  Cost: 1
-  ParametersCount: 2
+  Name: 5
+  Cost: 0
+  ParametersCount: 0
   ResultCount: 1
+  _value:
+    _value: 5
