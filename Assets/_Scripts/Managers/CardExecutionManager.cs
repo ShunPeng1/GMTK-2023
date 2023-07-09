@@ -11,8 +11,6 @@ namespace _Scripts.Cards
     {
         [SerializeField] public ActorBehavior [] Actors;
         
-        [SerializeField] private CardPlaceRegion _executeRegion;
-        
         private List<object> _objectList = new();
         private List<BaseCardInformation> _prefixCardInformations = new();
         public void AddObject(object obj)
@@ -58,10 +56,8 @@ namespace _Scripts.Cards
         }
 
 
-        public void Execute()
+        public void Execute(List<BaseCardInformation> cardsInformation)
         {
-            var cardsInformation = _executeRegion.GetCardsInformation();
-
             Stack<object []> prefixVariables = new Stack<object []>();
             Stack<BaseCardInformation> verbStack = new Stack<BaseCardInformation>();
 
