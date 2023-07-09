@@ -70,8 +70,9 @@ namespace _Scripts.Cards
                 index = _cardCount ;
                 
                 _cardPlaceHolders[index].BaseCard = card;
-                card.transform.position = _cardPlaceHolders[index].transform.position;
-
+                //card.transform.position = _cardPlaceHolders[index].transform.position;
+                SmoothMove(card.transform, _cardPlaceHolders[index].transform.position);
+                
                 _cardCount ++;
                 return true;
             }
@@ -79,7 +80,8 @@ namespace _Scripts.Cards
             if(IsSort) ShiftRight(index);
             
             _cardPlaceHolders[index].BaseCard = card;
-            card.transform.position = _cardPlaceHolders[index].transform.position;
+            //card.transform.position = _cardPlaceHolders[index].transform.position;
+            SmoothMove(card.transform, _cardPlaceHolders[index].transform.position);
 
             _cardCount++;
             return true;
@@ -93,7 +95,9 @@ namespace _Scripts.Cards
                 _cardPlaceHolders[i].BaseCard = card;
                 
                 if (card == null) continue;
-                card.transform.position = _cardPlaceHolders[i].transform.position;
+                //card.transform.position = _cardPlaceHolders[i].transform.position;
+                SmoothMove(card.transform, _cardPlaceHolders[i].transform.position);
+
             }
         }
         
@@ -106,7 +110,9 @@ namespace _Scripts.Cards
                 _cardPlaceHolders[i].BaseCard = card;
                 
                 if (card == null) continue;
-                card.transform.position = _cardPlaceHolders[i].transform.position;
+                //card.transform.position = _cardPlaceHolders[i].transform.position;
+                SmoothMove(card.transform, _cardPlaceHolders[i].transform.position);
+
             }
 
             _cardPlaceHolders[^1].BaseCard = null;
@@ -184,9 +190,9 @@ namespace _Scripts.Cards
             _temporaryCardHolder = null;
         }
 
-        private void SmoothMove(Transform from, Transform to)
+        private void SmoothMove(Transform from, Vector3 to)
         {
-            from.DOMove(to.position, _moveDuration).SetEase(_moveEase);
+            from.DOMove(to, _moveDuration).SetEase(_moveEase);
         }
     }
 }
