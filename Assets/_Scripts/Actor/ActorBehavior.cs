@@ -46,7 +46,7 @@ namespace _Scripts.Actor
             Debug.Log(gameObject.name + " HEALTH CHANGE " + f + " To " + f1);
 
             
-            LevelManager.Instance.OnNextBattleFieldSequence.AppendCallback(
+            GameManager.Instance.OnNextBattleFieldSequence.AppendCallback(
                 () =>
                 {
                     _animator.SetTrigger(Hit);

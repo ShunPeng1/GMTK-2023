@@ -13,32 +13,17 @@ namespace _Scripts.Cards
         
         private List<object> _objectList = new();
         private List<BaseCardInformation> _prefixCardInformations = new();
-        public void AddObject(object obj)
-        {
-            _objectList.Add(obj);
-        }
 
-        public T GetObjectByType<T>()
-        {
-            foreach (object obj in _objectList)
-            {
-                if (obj is T)
-                {
-                    return (T)obj;
-                }
-            }
+        [SerializeField] private CardPlaceRegion _playerHandRegion;
+        [SerializeField] private CardPlaceRegion _enemyPlaceRegion;
 
-            return default(T);
-        }
+        [SerializeField] private BaseCardInformation[] _allyCards;
+        [SerializeField] private List<BaseCardInformation>[] _enemySentences;
+    
+        private RandomBag<BaseCardInformation> _allyBag;
+        private RandomBag<BaseCardInformation> _enemyBag;
 
-        public void RemoveObject(object obj)
-        {
-            _objectList.Remove(obj);
-        }
-        private void Awake()
-        {
-            
-        }
+        
         
         public ActorBehavior[] GetAllActorOfRole(ActorRole actorRole)
         {

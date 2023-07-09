@@ -12,13 +12,12 @@ public class CardExecutionButton : MonoBehaviour
     [SerializeField] private float _moveDuration = 0.15f;
     [SerializeField] private Ease _movingEase = Ease.OutCubic;
     
-    private Vector3 _initialPosition;
+    [SerializeField] private Vector3 _initialLocalPosition;
 
     private bool _isSnapping = false;
     private void Start()
     {
-
-        _initialPosition = transform.position;
+        _initialLocalPosition = transform.localPosition;
     }
 
     private void OnMouseDown()
@@ -37,10 +36,10 @@ public class CardExecutionButton : MonoBehaviour
              ExecuteCardRegion);
     }
 
-    private void UnsnapAnimation()
+    public void UnsnapAnimation()
     {
         Vector3 nextFitPosition = _cardPlaceRegion.UnsnapFitAllCard();
-        transform.DOMove(_initialPosition, _moveDuration).SetEase(_movingEase);
+        transform.DOLocalMove(_initialLocalPosition, _moveDuration).SetEase(_movingEase);
         _isSnapping = false;
     }
     
@@ -50,7 +49,7 @@ public class CardExecutionButton : MonoBehaviour
         {
             Debug.Log("EXECUTE ");
             CardExecutionManager.Instance.Execute(_cardPlaceRegion.GetCardsInformation());
-            LevelManager.Instance.ShowBattleField();
+            GameManager.Instance.ShowBattleField();
         }
         catch (Exception e)
         {
