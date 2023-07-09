@@ -26,7 +26,7 @@ public class VisualManager : SingletonMonoBehaviour<VisualManager>
     [SerializeField] private GameObject VictoryPanel;
     private void Awake()
     {
-        //SoundManager.Instance.PlayBGM(BGM);
+        SoundManager.Instance.PlayBGM(BGM);
         GameOverPanel.SetActive(false);
         VictoryPanel.SetActive(false);
     }

@@ -98,7 +98,7 @@ namespace _Scripts.Actor
         {
             beingAttackedActor.Health.Value -= Strength.Value;
             _animator.SetTrigger(Atk);
-            //SoundManager.Instance.PlaySound(AttackSFX);
+            SoundManager.Instance.PlaySound(AttackSFX);
         }
         
         
