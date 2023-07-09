@@ -18,6 +18,12 @@ public class VisualManager : SingletonMonoBehaviour<VisualManager>
     [SerializeField] private Sprite _inInJigsawColorSprite;
     [SerializeField] private Sprite _outOutJigsawColorSprite;
 
+
+    [SerializeField] private AudioClip BGM;
+    private void Awake()
+    {
+        //SoundManager.Instance.PlayBGM(BGM);
+    }
     public Color GetColorCard(WordCardType wordCardType)
     {
         return wordCardType switch

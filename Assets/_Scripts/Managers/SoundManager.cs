@@ -32,4 +32,18 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         BGM_AudioSource.clip = clip;
         BGM_AudioSource.Play();
     }
+    public void ToggleBGM()
+    {
+        BGM_AudioSource.mute = !BGM_AudioSource.mute;
+    }
+    public void ToggleSFX()
+    {
+        SFX_AudioSource.mute = !SFX_AudioSource.mute;
+    }
+    public void ChangeVolume(float volume)
+    {
+        BGM_AudioSource.volume = volume;
+        SFX_AudioSource.volume = volume;
+    }
+
 }

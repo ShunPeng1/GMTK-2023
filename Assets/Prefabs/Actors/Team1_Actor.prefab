@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 9e50be737c1ee9e42acb42c16bd15388, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   _animator: {fileID: 2902294370865611493}
   _generalAnimationDuration: 1
   _healthText: {fileID: 0}
+  AttackSFX: {fileID: 8300000, guid: 965d8a1872897bb40afcac1bd7292019, type: 3}
 --- !u!1 &7119158865955709889
 GameObject:
   m_ObjectHideFlags: 0

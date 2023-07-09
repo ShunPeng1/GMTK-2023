@@ -34,6 +34,7 @@ namespace _Scripts.Actor
         [Header("Text UI")] 
         [SerializeField] private TMP_Text _healthText;
 
+        [SerializeField] private AudioClip AttackSFX;
         private void Start()
         {
             _animator = GetComponent<Animator>();
@@ -65,6 +66,7 @@ namespace _Scripts.Actor
         public void Attack(ActorBehavior beingAttackedActor)
         {
             beingAttackedActor.Health.Value -= Strength.Value;
+            //SoundManager.Instance.PlaySound(AttackSFX);
         }
         
         
