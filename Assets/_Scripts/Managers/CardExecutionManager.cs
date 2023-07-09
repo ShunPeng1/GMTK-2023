@@ -5,6 +5,7 @@ using _Scripts.Actor;
 using DG.Tweening;
 using UnityEngine;
 using UnityUtilities;
+using Random = UnityEngine.Random;
 
 namespace _Scripts.Cards
 {
@@ -34,7 +35,6 @@ namespace _Scripts.Cards
         [SerializeField] private EnemySentenceDistribution[] _enemySentences;
 
         private Dictionary<PlayerHandCardDistribution, RandomBag<BaseCardInformation>> _playerDrawSet = new ();
-        private RandomBag<EnemySentenceDistribution> _enemyBagSentence;
 
         private void Awake()
         {
@@ -44,7 +44,6 @@ namespace _Scripts.Cards
                 _playerDrawSet.Add(playerHandCardDistribution, bag);
             }
 
-            _enemyBagSentence = new RandomBag<EnemySentenceDistribution>(_enemySentences,1);
         }
 
         private void Start()
@@ -71,7 +70,7 @@ namespace _Scripts.Cards
         
         public void StartEnemyTurn()
         {
-            var enemySentence = _enemyBagSentence.PopRandomItem();
+            var enemySentence = _enemySentences[Random.Range(0, _enemySentences.Length)];
 
             foreach (var enemyBaseCard in enemySentence.EnemyBaseCardInformation)
             {
@@ -100,6 +99,8 @@ namespace _Scripts.Cards
             {
                 string debug = enemySentence.Aggregate("", (current, enemyBaseCardInformation) => current + enemyBaseCardInformation.Name);
                 Debug.LogError("WRONG ENEMY SENTENCES " + debug);
+                
+                _enemyPlaceRegion.DestroyAllCard();
             }
         }
         
@@ -133,8 +134,9 @@ namespace _Scripts.Cards
             Stack<BaseCardInformation> verbStack = new Stack<BaseCardInformation>();
 
             // Reverse 
-            cardsInformation.Reverse();
-
+            List<BaseCardInformation> reversedList = new List<BaseCardInformation>(cardsInformation);
+            reversedList.Reverse();
+            
             for (int i = 0; i < cardsInformation.Count; i++)
             {
                 var cardInformation = cardsInformation[i];

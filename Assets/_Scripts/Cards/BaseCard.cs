@@ -1,5 +1,6 @@
 using System;
 using _Scripts.Cards;
+using DG.Tweening;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -15,6 +16,9 @@ public class BaseCard : MonoBehaviour
     [SerializeField] private Color _selectHighlightColor = new Color(0.15f, 0.15f, 0.15f);
 
     [SerializeField] private bool _activeValidate = true;
+
+    [SerializeField] private float _spawnDuration = 0.5f;
+    [SerializeField] private Ease _spawnEase = Ease.OutCubic;
     
     private void OnValidate()
     {
@@ -26,12 +30,21 @@ public class BaseCard : MonoBehaviour
         _spriteRenderer.sprite = VisualManager.Instance.GetSpriteCard(CardInformation.WordCardType);
     }
 
-    private void Start()
+    private void Awake()
     {
         _wordText.text = CardInformation.Name;
         
         _spriteRenderer.color = VisualManager.Instance.GetColorCard(CardInformation.WordCardType);
         _spriteRenderer.sprite = VisualManager.Instance.GetSpriteCard(CardInformation.WordCardType);
+        
+    }
+
+    private void Start()
+    {
+        transform.localScale = Vector3.zero;
+
+        transform.DOScale(Vector3.one, _spawnDuration).SetEase(_spawnEase);
+        
     }
 
     public void OnSelect()
