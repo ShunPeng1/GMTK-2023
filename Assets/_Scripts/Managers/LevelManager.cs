@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityUtilities;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : SingletonMonoBehaviour<LevelManager>
 {
     public enum WhoseTurn
     {
@@ -37,17 +37,15 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float _transitionDuration;
     [SerializeField] private Ease _transitionEase = Ease.OutCubic;
     [SerializeField] private Vector3 _transitionOffsetPosition = new Vector3(0, 10, 0);
-    
-    
-    void ShowBattleField()
-    {
-        NextBattleFieldAnimations.Invoke();
-    }
 
-    void EnemyTurn()
+
+    public void ShowBattleField()
     {
+        HideCraftBench();
+        DOVirtual.DelayedCall(_transitionDuration, () => {NextBattleFieldAnimations.Invoke(); });
         
     }
+
     
     void ShowCraftBench()
     {

@@ -105,6 +105,7 @@ namespace _Scripts.Cards
                 index = _cardCount ;
                 
                 _cardPlaceHolders[index].BaseCard = card;
+                card.transform.parent = transform;
                 //card.transform.position = _cardPlaceHolders[index].transform.position;
                 SmoothMove(card.transform, _cardPlaceHolders[index].transform.position);
                 
@@ -115,6 +116,7 @@ namespace _Scripts.Cards
             if(IsSort) ShiftRight(index);
             
             _cardPlaceHolders[index].BaseCard = card;
+            card.transform.parent = transform;
             //card.transform.position = _cardPlaceHolders[index].transform.position;
             SmoothMove(card.transform, _cardPlaceHolders[index].transform.position);
 
@@ -143,13 +145,13 @@ namespace _Scripts.Cards
             {
                 var card = _cardPlaceHolders[i+1].BaseCard;
                 _cardPlaceHolders[i].BaseCard = card;
-                
+
                 if (card == null) continue;
                 //card.transform.position = _cardPlaceHolders[i].transform.position;
                 SmoothMove(card.transform, _cardPlaceHolders[i].transform.position);
 
             }
-
+            
             _cardPlaceHolders[^1].BaseCard = null;
         }
         
@@ -159,6 +161,7 @@ namespace _Scripts.Cards
             {
                 if (_cardPlaceHolders[i].BaseCard == card)
                 {
+                    _cardPlaceHolders[i].BaseCard.transform.parent = null;
                     _cardPlaceHolders[i].BaseCard = null;
                     ShiftLeft(i);
                     
@@ -173,8 +176,10 @@ namespace _Scripts.Cards
         public bool RemoveCard(BaseCard card,CardPlaceHolder cardPlaceHolder)
         {
             if (cardPlaceHolder.BaseCard != card) return false;
-            
+
+            cardPlaceHolder.BaseCard.transform.parent = null;
             cardPlaceHolder.BaseCard = null;
+            
             if(IsSort) ShiftLeft(_cardPlaceHolders.IndexOf(cardPlaceHolder));
             _cardCount--;
 

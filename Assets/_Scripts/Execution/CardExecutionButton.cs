@@ -50,6 +50,7 @@ public class CardExecutionButton : MonoBehaviour
         {
             Debug.Log("EXECUTE ");
             CardExecutionManager.Instance.Execute(_cardPlaceRegion.GetCardsInformation());
+            LevelManager.Instance.ShowBattleField();
         }
         catch (Exception e)
         {

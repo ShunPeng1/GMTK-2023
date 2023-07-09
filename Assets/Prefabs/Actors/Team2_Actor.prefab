@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5264887306185211002}
   - component: {fileID: 5264887306185211003}
   - component: {fileID: 5264887306185211004}
+  - component: {fileID: 502024375430981604}
   m_Layer: 0
   m_Name: Team2_Actor
   m_TagString: Untagged
@@ -191,3 +192,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &502024375430981604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5264887306185211005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70960b532bf74bc9a51216e95369d2c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Role:
+    _value: 1
+  Health:
+    _value: 10
+  Strength:
+    _value: 5
+  Gold:
+    _value: 5
+  Turns:
+    _value: 0
