@@ -9,7 +9,19 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     private AudioSource BGM_AudioSource;
     [SerializeField]
     private AudioSource SFX_AudioSource;
-    
+    static SoundManager instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void PlaySound(AudioClip clip)
     {
         SFX_AudioSource.PlayOneShot(clip);
@@ -17,6 +29,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     public void PlayBGM(AudioClip clip)
     {
         BGM_AudioSource.Stop();
-        BGM_AudioSource.PlayOneShot(clip);
+        BGM_AudioSource.clip = clip;
+        BGM_AudioSource.Play();
     }
 }
