@@ -29,10 +29,13 @@ namespace _Scripts.Actor
 
         [SerializeField] private float _generalAnimationDuration = 1f;
         private static readonly int Hit = Animator.StringToHash("Hit");
+        private static readonly int Atk = Animator.StringToHash("Attack");
+        private static readonly int Die = Animator.StringToHash("Die");
 
 
         [Header("Text UI")] 
         [SerializeField] private TMP_Text _healthText;
+        [SerializeField] private TMP_Text _strText;
 
         [SerializeField] private AudioClip AttackSFX;
         private void Start()
@@ -44,28 +47,33 @@ namespace _Scripts.Actor
         
         private void OnChangeHealth(float f, float f1)
         {
-            Debug.Log(gameObject.name + " HEALTH CHANGE " + f + " To " + f1);
+            //Debug.Log(gameObject.name + " HEALTH CHANGE " + f + " To " + f1);
 
             
             GameManager.Instance.OnNextBattleFieldSequence.AppendCallback(
                 () =>
                 {
                     _animator.SetTrigger(Hit);
-                    UpdateUI();
                 }
             ).AppendInterval(_generalAnimationDuration);
-            
-            Debug.Log(gameObject.name + " Finish add sequence ");
+            UpdateUI();
+            if(f1 <=0)
+            {
+                _animator.SetTrigger(Die);
+            }
+            //Debug.Log(gameObject.name + " Finish add sequence ");
         }
 
         public void UpdateUI()
         {
-            Debug.Log("Update UI");
+            _healthText.text = Health.ToString();
+            _strText.text = Strength.ToString();
         }
 
         public void Attack(ActorBehavior beingAttackedActor)
         {
             beingAttackedActor.Health.Value -= Strength.Value;
+            _animator.SetTrigger(Atk);
             //SoundManager.Instance.PlaySound(AttackSFX);
         }
         

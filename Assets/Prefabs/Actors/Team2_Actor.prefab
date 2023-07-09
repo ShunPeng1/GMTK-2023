@@ -737,6 +737,7 @@ MonoBehaviour:
   _animator: {fileID: 5264887306185211004}
   _generalAnimationDuration: 1
   _healthText: {fileID: 7017468983075828715}
+  _strText: {fileID: 7439134144433966775}
   AttackSFX: {fileID: 8300000, guid: 965d8a1872897bb40afcac1bd7292019, type: 3}
 --- !u!1 &5898103527186285263
 GameObject:
