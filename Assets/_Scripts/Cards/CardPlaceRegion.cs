@@ -51,12 +51,24 @@ namespace _Scripts.Cards
             return result;
         }
 
+        public void DestroyAllCard()
+        {
+            for (int i = 0; i < _cardCount; i++)
+            {
+                Destroy(_cardPlaceHolders[i].BaseCard.gameObject);
+                _cardPlaceHolders[i].BaseCard = null;
+                
+            }
+
+            _cardCount = 0;
+        }
+        
         public Vector3 SnapFitAllCard()
         {
             int i = 0;
             for (; i < _cardCount; i++)
             {
-                SmoothMove(_cardPlaceHolders[i].transform, _snapPlace.transform.position + i * (_cardOffset - _snappingPosition));
+                //SmoothMove(_cardPlaceHolders[i].transform, _snapPlace.transform.position + i * (_cardOffset - _snappingPosition));
 
                 if (_cardPlaceHolders[i].BaseCard != null)
                 {
@@ -72,7 +84,7 @@ namespace _Scripts.Cards
             int i = 0;
             for (; i < _cardCount; i++)
             {
-                SmoothMove(_cardPlaceHolders[i].transform, _spawnPlace.transform.position + i * (_cardOffset));
+                //SmoothMove(_cardPlaceHolders[i].transform, _spawnPlace.transform.position + i * (_cardOffset));
 
                 if (_cardPlaceHolders[i].BaseCard != null)  
                     SmoothMove(_cardPlaceHolders[i].BaseCard.transform, _spawnPlace.transform.position + i * (_cardOffset));

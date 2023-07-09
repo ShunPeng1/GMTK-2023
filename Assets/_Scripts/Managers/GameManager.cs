@@ -35,15 +35,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public void ShowBattleField()
     {
+        HideCraftBench();
+     
         DOVirtual.DelayedCall(_transitionDuration, () =>
         {
-            
-        });
-        HideCraftBench();
-        OnNextBattleFieldSequence.AppendCallback(FinishBattleFieldAnimation).AppendInterval(2f);
+            OnNextBattleFieldSequence.AppendCallback(FinishBattleFieldAnimation).AppendInterval(2f);
         
-        Debug.Log("Before Play");
-        OnNextBattleFieldSequence.Play();
+            Debug.Log("Before Play");
+            OnNextBattleFieldSequence.Play();
+        });
         
     }
 
