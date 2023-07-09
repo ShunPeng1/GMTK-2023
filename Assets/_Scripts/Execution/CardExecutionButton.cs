@@ -13,7 +13,7 @@ public class CardExecutionButton : MonoBehaviour
     {
         try
         {
-            
+            Debug.Log("EXECUTE ");
             CardExecutionManager.Instance.Execute(_cardPlaceRegion.GetCardsInformation());
         }
         catch (Exception e)

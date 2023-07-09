@@ -58,12 +58,12 @@ namespace _Scripts.Managers
                 var result = hit.transform.gameObject.GetComponent<TResult>();
                 if (result != null)
                 {
-                    Debug.Log("Mouse find "+ gameObject.name);
+                    //Debug.Log("Mouse find "+ gameObject.name);
                     return result;
                 }
             }
 
-            Debug.Log("Mouse cannot find "+ typeof(TResult));
+            //Debug.Log("Mouse cannot find "+ typeof(TResult));
             return default;
         }
 
