@@ -95,7 +95,7 @@ MonoBehaviour:
   stencilReadMask: 255
   stencilWriteMask: 255
   pivot: 1
-  width: 30
+  width: 40
   height: 10
   type: 1
   cornerRadiusMode: 0
@@ -212,4 +212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPlace: {fileID: 8526978536886875520}
   _maxCardHold: 5
-  _cardOffset: {x: 5, y: 0, z: 0}
+  _cardOffset: {x: 6, y: 0, z: 0}
+  IsSort: 1
+  _cardPlaceHolders: []
+  _cardCount: 0
+  _moveDuration: 0.15
+  _moveEase: 9

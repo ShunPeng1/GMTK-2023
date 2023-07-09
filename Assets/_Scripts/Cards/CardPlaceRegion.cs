@@ -13,7 +13,7 @@ namespace _Scripts.Cards
         
         [SerializeField] public bool IsSort = true;
         
-        [SerializeField] private readonly List<CardPlaceHolder> _cardPlaceHolders = new();
+        [SerializeField] private List<CardPlaceHolder> _cardPlaceHolders = new();
         private CardPlaceHolder _temporaryCardHolder;
         [SerializeField] private int _cardCount = 0;
 
