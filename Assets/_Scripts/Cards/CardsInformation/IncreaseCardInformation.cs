@@ -29,7 +29,7 @@ namespace _Scripts.Cards.CardsInformation
             {
                 foreach (var observableData in (ObservableData<float> [])  parameters1[0])
                 {
-                    observableData.Value -= ((ObservableData<float>)parameters2[0]).Value;
+                    observableData.Value += ((ObservableData<float>)parameters2[0]).Value;
                 }
             }
             else if (dataType1 == typeof(ObservableData<float>))

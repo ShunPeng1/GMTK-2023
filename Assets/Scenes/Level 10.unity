@@ -2542,9 +2542,9 @@ MonoBehaviour:
     EveryTurnDrawCount: 1
     Cards:
     - {fileID: 11400000, guid: 7433e17f45c46734296c846317f159d4, type: 2}
-    - {fileID: 11400000, guid: 89a99324524ba9743a5a7229f6d4a11a, type: 2}
     - {fileID: 11400000, guid: 18ddc4757ea1a8345a8dcac7dd4e8581, type: 2}
     - {fileID: 11400000, guid: 18ddc4757ea1a8345a8dcac7dd4e8581, type: 2}
+    - {fileID: 11400000, guid: 7433e17f45c46734296c846317f159d4, type: 2}
   - StartGameDrawCount: 1
     EveryTurnDrawCount: 1
     Cards:
@@ -2562,7 +2562,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e4f2a4e7b6a328948b9ddd083755f69c, type: 2}
     - {fileID: 11400000, guid: 4c7fddc0dada89548a49d00093540f4e, type: 2}
     - {fileID: 11400000, guid: 7433e17f45c46734296c846317f159d4, type: 2}
-    - {fileID: 11400000, guid: 0585a98045f981645b9c0bf0f8c65d65, type: 2}
+    - {fileID: 11400000, guid: 4487a4c25bc4fd2418974d136c95e4bc, type: 2}
 --- !u!1 &1409193531
 GameObject:
   m_ObjectHideFlags: 0
