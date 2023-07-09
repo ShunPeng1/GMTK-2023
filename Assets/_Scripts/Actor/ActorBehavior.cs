@@ -45,15 +45,14 @@ namespace _Scripts.Actor
         {
             Debug.Log(gameObject.name + " HEALTH CHANGE " + f + " To " + f1);
 
-            Sequence sequence = DOTween.Sequence();
-            sequence.AppendCallback(
+            
+            LevelManager.Instance.OnNextBattleFieldSequence.AppendCallback(
                 () =>
                 {
                     _animator.SetTrigger(Hit);
                     UpdateUI();
                 }
             ).AppendInterval(_generalAnimationDuration);
-            LevelManager.Instance.OnNextBattleFieldSequence.Join(sequence);
             
             Debug.Log(gameObject.name + " Finish add sequence ");
         }

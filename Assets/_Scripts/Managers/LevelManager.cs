@@ -41,12 +41,7 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
 
     private void Start()
     {
-        OnNextBattleFieldSequence = DOTween.Sequence();
-        OnNextBattleFieldSequence.AppendCallback(() => { Debug.Log("APPEND START SEQUENCE"); }).AppendInterval(1f);
-        
-        OnNextBattleFieldSequence.OnKill(() => { Debug.Log("This was kill"); });
-        OnNextBattleFieldSequence.Pause();
-
+        CreateSequence();
     }
 
     public void ShowBattleField()
@@ -63,10 +58,20 @@ public class LevelManager : SingletonMonoBehaviour<LevelManager>
         
     }
 
+    private void CreateSequence()
+    {
+        
+        OnNextBattleFieldSequence = DOTween.Sequence();
+        OnNextBattleFieldSequence.Pause();
+
+    }
+    
     
     private void FinishBattleFieldAnimation()
     {
-        Debug.Log("Finish Animation");
+        
+        ShowCraftBench();
+        CreateSequence();
     }
     
     void ShowCraftBench()
