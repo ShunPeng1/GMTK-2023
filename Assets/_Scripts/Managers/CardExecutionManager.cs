@@ -17,13 +17,60 @@ namespace _Scripts.Cards
         [SerializeField] private CardPlaceRegion _playerHandRegion;
         [SerializeField] private CardPlaceRegion _enemyPlaceRegion;
 
+        [Serializable]
+        class PlayerHandCardDistribution
+        {
+            public int StartGameDrawCount;
+            public int EveryTurnDrawCount;
+            public BaseCardInformation[] Cards;
+                     
+        }
+        
         [SerializeField] private BaseCardInformation[] _allyCards;
         [SerializeField] private List<BaseCardInformation>[] _enemySentences;
-    
-        private RandomBag<BaseCardInformation> _allyBag;
+
+        [SerializeField] private PlayerHandCardDistribution [] _playerHandCardDistributions;
+        private Dictionary<PlayerHandCardDistribution, RandomBag<BaseCardInformation>> _playerDrawSet = new ();
+
         private RandomBag<BaseCardInformation> _enemyBag;
 
-        
+        private void Awake()
+        {
+            foreach (var playerHandCardDistribution in _playerHandCardDistributions)
+            {
+                RandomBag<BaseCardInformation> bag = new RandomBag<BaseCardInformation>(playerHandCardDistribution.Cards,1);
+                _playerDrawSet.Add(playerHandCardDistribution, bag);
+            }
+        }
+
+        private void Start()
+        {
+            foreach (var (playerHandCardDistribution, bag) in _playerDrawSet)
+            {
+                for (int i = 0; i < playerHandCardDistribution.StartGameDrawCount; i++)
+                {
+                    DrawCard(bag);
+                }
+            }
+        }
+
+        public void StartPlayerTurn()
+        {
+            foreach (var (playerHandCardDistribution, bag) in _playerDrawSet)
+            {
+                for (int i = 0; i < playerHandCardDistribution.EveryTurnDrawCount; i++)
+                {
+                    DrawCard(bag);
+                }
+            }
+        }
+        public void DrawCard(RandomBag<BaseCardInformation> bag)
+        {
+            var cardPlaceHolder = _playerHandRegion.FindEmptyCardPlaceHolder();
+            if (cardPlaceHolder == null) return;
+            BaseCard baseCard = Instantiate(ResourceManager.Instance.GetBaseCard(bag.PopRandomItem()), cardPlaceHolder.transform.position, Quaternion.identity);
+            _playerHandRegion.AddCard(baseCard, null);
+        }
         
         public ActorBehavior[] GetAllActorOfRole(ActorRole actorRole)
         {

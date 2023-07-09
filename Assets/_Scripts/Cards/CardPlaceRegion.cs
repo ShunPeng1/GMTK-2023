@@ -93,6 +93,11 @@ namespace _Scripts.Cards
             return _spawnPlace.transform.position + i * (_cardOffset);
         }
 
+        public CardPlaceHolder FindEmptyCardPlaceHolder()
+        {
+            if (_cardCount >= _maxCardHold) return null;
+            return _cardPlaceHolders[_cardCount];
+        }
 
         public bool AddCard(BaseCard card, CardPlaceHolder cardPlaceHolder)
         {

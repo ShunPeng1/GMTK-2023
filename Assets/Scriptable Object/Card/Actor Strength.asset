@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WordCardType: 1
   Priority: 0
-  Name: '''s Strength'
+  Name: '''s Strenght'
   Cost: 1
   ParametersCount: 1
   ResultCount: 0

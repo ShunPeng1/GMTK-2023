@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Scripts.Cards;
 using DG.Tweening;
 using UnityEngine;
 using UnityUtilities;
@@ -62,8 +63,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         CreateSequence();
 
         _cardExecutionButton.UnsnapAnimation();
+        
+        DOVirtual.DelayedCall(_transitionDuration, () =>
+        {
+            CardExecutionManager.Instance.StartPlayerTurn();
+        });
     }
-    
+
     void ShowCraftBench()
     {
         _upperCraftBench.transform.DOMove(-_transitionOffsetPosition, _transitionDuration).SetRelative()
