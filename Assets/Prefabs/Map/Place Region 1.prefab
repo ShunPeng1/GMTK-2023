@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blendMode: 1
   scaleMode: 0
-  color: {r: 0.68025213, g: 0.56136525, b: 0.8207547, a: 1}
+  color: {r: 0.7169812, g: 0.33481666, b: 0.48624033, a: 1}
   detailLevel: 2
   renderQueue: -1
   zTest: 4
@@ -398,7 +398,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3937071776912202360}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -452,7 +452,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -185338526, guid: 77cf5ce2c586ac64586911574b8845e9, type: 3}
-  m_Color: {r: 0.89574385, g: 0.8066038, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.6179246, b: 0.782394, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
