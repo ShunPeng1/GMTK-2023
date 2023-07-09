@@ -16,7 +16,7 @@ public class MySceneManager : SingletonMonoBehaviour<MySceneManager>
     }
     public void StartGame()
     {
-        SceneManager.LoadScene("Thuan Testing 1");
+        GetNextScene();
     }
     public void Exit()
     {
