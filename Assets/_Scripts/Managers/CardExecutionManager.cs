@@ -11,7 +11,7 @@ namespace _Scripts.Cards
 {
     public class CardExecutionManager : SingletonMonoBehaviour<CardExecutionManager>
     {
-        [SerializeField] public ActorBehavior [] Actors;
+        [SerializeField] public List< ActorBehavior > Actors;
         
         [Header("Region and Button")]
         [SerializeField] private CardPlaceRegion _playerHandRegion;
@@ -136,6 +136,10 @@ namespace _Scripts.Cards
             return Actors.LastOrDefault(actor => actor.Role.Value == actorRole);
         }
 
+        public void RemoveActor(ActorBehavior actorBehavior)
+        {
+            Actors.Remove(actorBehavior);
+        }
 
         public void Execute(List<BaseCardInformation> cardsInformation)
         {

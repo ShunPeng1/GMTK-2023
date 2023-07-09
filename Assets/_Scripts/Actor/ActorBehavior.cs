@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using _Scripts.Cards;
 using _Scripts.DataWrapper;
 using DG.Tweening;
 using TMPro;
@@ -47,7 +48,7 @@ namespace _Scripts.Actor
         
         private void OnChangeHealth(float f, float f1)
         {
-            //Debug.Log(gameObject.name + " HEALTH CHANGE " + f + " To " + f1);
+            Debug.Log(gameObject.name + " HEALTH CHANGE " + f + " To " + f1);
 
             
             GameManager.Instance.OnNextBattleFieldSequence.AppendCallback(
@@ -55,12 +56,14 @@ namespace _Scripts.Actor
                 {
                     _animator.SetTrigger(Hit);
                     UpdateUI();
-                    if(f1 <=0)
+                    if(f1 < 1f)
                     {
                         _animator.SetTrigger(Die);
+                        
+                        CardExecutionManager.Instance.RemoveActor(this);
                     }
                     
-                    //Debug.Log(gameObject.name + " Finish add sequence ");
+                    
                 }
             ).AppendInterval(_generalAnimationDuration);
             
